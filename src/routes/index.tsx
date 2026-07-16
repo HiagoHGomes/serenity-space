@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import leandraAsset from "@/assets/leandra.png.asset.json";
+
 
 const WHATSAPP_URL =
   "https://wa.me/5511999999999?text=Oi!%20Quero%20iniciar%20minha%20jornada%20terap%C3%AAutica.";
