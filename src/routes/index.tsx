@@ -154,7 +154,7 @@ function Nav() {
             <span className="grid h-9 w-9 place-items-center rounded-full bg-gold text-[oklch(0.22_0.02_230)] shadow-soft">
               <LotusIcon className="h-4 w-4" />
             </span>
-            <span className="font-serif text-lg tracking-tight text-primary">Aurora Terapia</span>
+            <span className="font-serif text-lg tracking-tight text-primary">Leandra Estrelah</span>
           </a>
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
             <a href="#metodo" className="transition-colors hover:text-primary">Método</a>
@@ -811,7 +811,7 @@ function Footer() {
           <span className="grid h-7 w-7 place-items-center rounded-full bg-gold">
             <LotusIcon className="h-3.5 w-3.5 text-primary" />
           </span>
-          <span className="font-serif text-primary">Aurora Terapia</span>
+          <span className="font-serif text-primary">Leandra Estrelah · Terapeuta</span>
         </div>
         <p>© {new Date().getFullYear()} · Todos os direitos reservados</p>
         <div className="flex gap-4">
