@@ -295,30 +295,60 @@ function VideoPresentation() {
           Uma apresentação
         </p>
         <h2 className="mt-4 text-center font-serif text-4xl text-primary sm:text-5xl">
-          Olá, é um prazer receber você aqui.
+          Olá, sou <em className="not-italic text-gradient-gold">Leandra Estrelah</em>.
         </h2>
+        <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">
+          Terapeuta dedicada a mulheres sensíveis e perceptivas. É um prazer receber você aqui.
+        </p>
       </div>
 
-      <div className="reveal-on-scroll [transition-delay:180ms] mt-16 group relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-3xl bg-petrol shadow-glow">
-        <div
-          data-video-placeholder="youtube-or-vimeo"
-          className="absolute inset-0 grid place-items-center bg-[linear-gradient(135deg,color-mix(in_oklab,var(--petrol-deep)_90%,black),color-mix(in_oklab,var(--sage-deep)_70%,var(--petrol)))]"
-        >
-          <button
-            aria-label="Reproduzir vídeo"
-            className="relative grid h-24 w-24 place-items-center rounded-full bg-warm/90 text-primary shadow-glow transition-transform duration-500 group-hover:scale-110"
+      <div className="mt-20 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
+        {/* Portrait */}
+        <div className="reveal-on-scroll relative mx-auto w-full max-w-md">
+          <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-sage/40 via-lavender/30 to-gold-soft/40 blur-2xl" />
+          <div className="group relative overflow-hidden rounded-[2rem] shadow-glow">
+            <img
+              src={leandraAsset.url}
+              alt="Leandra Estrelah, terapeuta"
+              className="aspect-[4/5] h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-petrol-deep/50 via-transparent to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+              <div>
+                <p className="font-serif text-2xl text-warm">Leandra Estrelah</p>
+                <p className="text-xs uppercase tracking-[0.25em] text-warm/80">Terapeuta</p>
+              </div>
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-gold text-primary shadow-soft">
+                <LotusIcon className="h-4 w-4" />
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Video */}
+        <div className="reveal-on-scroll [transition-delay:180ms] group relative aspect-video overflow-hidden rounded-3xl bg-petrol shadow-glow">
+          <div
+            data-video-placeholder="youtube-or-vimeo"
+            className="absolute inset-0 grid place-items-center bg-[linear-gradient(135deg,color-mix(in_oklab,var(--petrol-deep)_90%,black),color-mix(in_oklab,var(--sage-deep)_70%,var(--petrol)))]"
           >
-            <span className="absolute inset-0 animate-ping rounded-full bg-gold opacity-30" />
-            <PlayIcon className="relative h-8 w-8" />
-          </button>
-          <span className="absolute bottom-5 left-5 rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-primary">
-            [ vídeo — YouTube / Vimeo ]
-          </span>
+            <button
+              aria-label="Reproduzir vídeo de apresentação"
+              className="relative grid h-20 w-20 place-items-center rounded-full bg-warm/90 text-primary shadow-glow transition-transform duration-500 group-hover:scale-110"
+            >
+              <span className="absolute inset-0 animate-ping rounded-full bg-gold opacity-30" />
+              <PlayIcon className="relative h-7 w-7" />
+            </button>
+            <span className="absolute bottom-5 left-5 rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-primary">
+              [ vídeo — YouTube / Vimeo ]
+            </span>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ---------------- Method Timeline ---------------- */
 
