@@ -77,14 +77,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Terapia Online — Uma jornada de acolhimento e alta percepção" },
+      { title: "Leandra Estrelah · Terapeuta — Uma jornada de acolhimento e alta percepção" },
       {
         name: "description",
         content:
-          "Atendimento psicoterapêutico online para mulheres de alta percepção. Um espaço seguro para reencontrar sua calma, sua clareza e sua força.",
+          "Atendimento psicoterapêutico online com Leandra Estrelah, terapeuta para mulheres de alta percepção. Um espaço seguro para reencontrar sua calma, clareza e força.",
       },
-      { name: "author", content: "Consultório Online" },
-      { property: "og:title", content: "Terapia Online — Uma jornada de acolhimento" },
+      { name: "author", content: "Leandra Estrelah" },
+      { property: "og:title", content: "Leandra Estrelah · Terapeuta — Uma jornada de acolhimento" },
+
       {
         property: "og:description",
         content:
