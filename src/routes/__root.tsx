@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import leandraAsset from "@/assets/leandra.png.asset.json";
+
+const shareImageUrl = leandraAsset.url;
 
 function NotFoundComponent() {
   return (
@@ -85,7 +88,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Leandra Estrelah" },
       { property: "og:title", content: "Leandra Estrelah · Terapeuta — Uma jornada de acolhimento" },
-
+      { property: "og:image", content: shareImageUrl },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:alt", content: "Leandra Estrelah" },
       {
         property: "og:description",
         content:
@@ -93,11 +98,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: shareImageUrl },
+      { name: "twitter:image:alt", content: "Leandra Estrelah" },
       { name: "theme-color", content: "#f7f5ee" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: shareImageUrl, type: "image/png" },
+      { rel: "shortcut icon", href: shareImageUrl, type: "image/png" },
+      { rel: "apple-touch-icon", href: shareImageUrl },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
