@@ -1,42 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import leandraAsset from "@/assets/leandra.png.asset.json";
 
+import olharAsset from "@/assets/leandra-olhar.jpg.asset.json";
+import sorrisoAsset from "@/assets/leandra-sorriso.jpg.asset.json";
+import depoimentoAsset from "@/assets/depoimento.mp4.asset.json";
 
+/** TODO: substituir pelo número real antes de publicar. */
 const WHATSAPP_URL =
-  "https://wa.me/5511999999999?text=Oi!%20Quero%20iniciar%20minha%20jornada%20terap%C3%AAutica.";
+  "https://wa.me/5599999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20Consulta%20Diagn%C3%B3stico.";
+
+const CTA_LABEL = "Agendar minha Consulta Diagnóstico";
 
 export const Route = createFileRoute("/")({
-  component: LandingPage,
+  component: Page,
+  head: () => ({
+    meta: [
+      { title: "Leandra Estrelah · Da exaustão à potência" },
+      {
+        name: "description",
+        content:
+          "Reestruturação Natural do Ser: mapeamento e calibragem do Canal Vital para pessoas com Alta Percepção. Consulta Diagnóstico com Leandra Estrelah.",
+      },
+      { property: "og:title", content: "Leandra Estrelah · Da exaustão à potência" },
+      {
+        property: "og:description",
+        content:
+          "Reestruturação Natural do Ser para pessoas com Alta Percepção. Da exaustão à potência.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://calm-wave-path.lovable.app/" }],
+  }),
 });
 
-function LandingPage() {
-  useScrollReveal();
-  useMouseParticles();
+/* ---------------------------------------------------------------- utilities */
 
-  return (
-    <main className="relative overflow-x-hidden bg-background text-foreground">
-      <ParticlesCanvas />
-      <Nav />
-      <Hero />
-      <FeelSection />
-      <VideoPresentation />
-      <MethodTimeline />
-      <ConceptCards />
-      <HowItWorks />
-      <Quiz />
-      <Testimonials />
-      <FAQ />
-      <FinalCTA />
-      <Footer />
-    </main>
-  );
-}
-
-/* ---------------- Hooks ---------------- */
-
-function useScrollReveal() {
+function useReveal() {
   useEffect(() => {
+    const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -48,740 +50,815 @@ function useScrollReveal() {
       },
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
     );
-    document.querySelectorAll(".reveal-on-scroll").forEach((el) => io.observe(el));
+    els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
 }
 
-function useMouseParticles() {
-  // Handled inside ParticlesCanvas
-}
+function GoldCursor() {
+  const dot = useRef<HTMLDivElement>(null);
+  const ring = useRef<HTMLDivElement>(null);
 
-/* ---------------- Particles ---------------- */
-
-function ParticlesCanvas() {
-  const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const canvas = ref.current!;
-    const ctx = canvas.getContext("2d")!;
-    let w = (canvas.width = window.innerWidth);
-    let h = (canvas.height = window.innerHeight);
-    const mouse = { x: w / 2, y: h / 2 };
-    const N = 55;
-    const dots = Array.from({ length: N }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25,
-      r: Math.random() * 1.6 + 0.4,
-    }));
-    const onResize = () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    };
-    const onMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
-    window.addEventListener("resize", onResize);
-    window.addEventListener("mousemove", onMove);
-
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    let rx = window.innerWidth / 2;
+    let ry = window.innerHeight / 2;
+    let mx = rx;
+    let my = ry;
     let raf = 0;
+
+    const onMove = (e: MouseEvent) => {
+      mx = e.clientX;
+      my = e.clientY;
+      if (dot.current) dot.current.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+    };
     const loop = () => {
-      ctx.clearRect(0, 0, w, h);
-      dots.forEach((d) => {
-        const dx = mouse.x - d.x;
-        const dy = mouse.y - d.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < 180) {
-          d.vx += (dx / dist) * 0.008;
-          d.vy += (dy / dist) * 0.008;
-        }
-        d.vx *= 0.98;
-        d.vy *= 0.98;
-        d.x += d.vx;
-        d.y += d.vy;
-        if (d.x < 0) d.x = w;
-        if (d.x > w) d.x = 0;
-        if (d.y < 0) d.y = h;
-        if (d.y > h) d.y = 0;
-        ctx.beginPath();
-        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(180, 160, 100, 0.45)";
-        ctx.fill();
-      });
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      if (ring.current) ring.current.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
       raf = requestAnimationFrame(loop);
     };
-    loop();
+    window.addEventListener("mousemove", onMove, { passive: true });
+    raf = requestAnimationFrame(loop);
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
     };
   }, []);
+
   return (
-    <canvas
-      ref={ref}
-      aria-hidden
-      className="pointer-events-none fixed inset-0 z-0 opacity-60 mix-blend-multiply"
-    />
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-[60] hidden md:block">
+      <div
+        ref={ring}
+        className="absolute -ml-4 -mt-4 h-8 w-8 rounded-full border border-gold/50 transition-opacity"
+      />
+      <div ref={dot} className="absolute -ml-[2px] -mt-[2px] h-1 w-1 rounded-full bg-gold" />
+    </div>
   );
 }
 
-/* ---------------- Nav ---------------- */
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="tracking-brand text-[0.65rem] text-gold">{children}</p>
+  );
+}
+
+function Cta({ tone = "dark", className = "" }: { tone?: "dark" | "light"; className?: string }) {
+  const base =
+    "group inline-flex items-center gap-4 border px-8 py-4 text-[0.7rem] tracking-brand transition-all duration-700";
+  const styles =
+    tone === "dark"
+      ? "border-forest/25 text-forest hover:border-gold hover:bg-forest hover:text-pearl"
+      : "border-pearl/35 text-pearl hover:border-gold hover:bg-gold hover:text-forest-deep";
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noreferrer"
+      data-cta="consulta-diagnostico"
+      className={`${base} ${styles} ${className}`}
+    >
+      {CTA_LABEL}
+      <span className="inline-block transition-transform duration-700 group-hover:translate-x-1">
+        →
+      </span>
+    </a>
+  );
+}
+
+function Section({
+  id,
+  className = "",
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section id={id} className={`relative px-6 py-28 md:px-12 md:py-40 ${className}`}>
+      <div className="mx-auto w-full max-w-6xl">{children}</div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ content */
+
+const SINTOMAS = [
+  "Exaustão que o sono não resolve",
+  "Você absorve facilmente o ambiente",
+  "Ruído mental constante",
+  "Sensação de estar fora do lugar",
+  "Sobrecarga emocional que sufoca",
+  "Dificuldade em separar o que é seu do que é do outro",
+  "Insegurança e baixa autoestima",
+  "Procrastinação crônica",
+  "Sobrecarga sensorial diante de pessoas e ambientes",
+];
+
+const PILARES = [
+  {
+    n: "01",
+    t: "Limpeza do Canal Vital",
+    d: "Desobstrução do que foi acumulado sem filtro. Retiramos o entulho emocional que o seu sistema absorveu do ambiente.",
+  },
+  {
+    n: "02",
+    t: "Calibragem",
+    d: "Instalação de filtros. A sua percepção continua ampla, mas passa a operar com critério — você escolhe o que entra.",
+  },
+  {
+    n: "03",
+    t: "Consolidação",
+    d: "Comando do seu sistema. Autonomia, não dependência: você recebe o manual de operação da sua própria estrutura.",
+  },
+];
+
+const JORNADA = [
+  {
+    t: "Consulta Diagnóstico",
+    s: "2 horas",
+    d: "Mapeamos o seu sistema, identificamos os gargalos do Canal Vital e o que a sua estrutura precisa para voltar a funcionar.",
+  },
+  {
+    t: "Ciclo de 10 Sessões",
+    s: "80 minutos cada",
+    d: "Protocolo de limpeza, organização e calibragem para você retomar o domínio da sua estrutura.",
+  },
+  {
+    t: "Sustentação",
+    s: "Vida real",
+    d: "Manutenções estratégicas para sustentar sua potência conforme os seus desafios evoluem.",
+  },
+];
+
+const PARA_QUEM = [
+  {
+    t: "Alta Percepção",
+    d: "Pessoas que captam mais do ambiente do que conseguem processar e sentem o mundo alto demais.",
+  },
+  {
+    t: "Resultados concretos",
+    d: "Quem busca precisão técnica e sobriedade, não narrativas infinitas nem acolhimento genérico.",
+  },
+  {
+    t: "Prontidão",
+    d: "Quem está pronta para deixar de ser esponja do ambiente e se tornar guardiã da própria potência.",
+  },
+];
+
+const DEPOIMENTOS = [
+  {
+    nome: "Chris Lima",
+    meta: "28 anos · Imperatriz, MA",
+    texto:
+      "Isso ajuda muita gente não só a se compreender, mas sobre a própria sanidade. Se não fosse por ela, eu teria ficado louco só por achar que estava ficando.",
+  },
+  {
+    nome: "Anna Duailibe",
+    meta: "40 anos · São Luís, MA",
+    texto:
+      "Pela primeira vez alguém olhou para a minha sensibilidade como estrutura, e não como problema. Saí com clareza do que era meu e do que era do ambiente.",
+  },
+  {
+    nome: "Pedro Oliveira",
+    meta: "38 anos · São Paulo, SP",
+    texto:
+      "Um processo técnico, sóbrio e profundamente humano. A exaustão constante deu lugar a um comando que eu não sabia que existia em mim.",
+  },
+];
+
+const FAQ = [
+  {
+    q: "Isso é terapia convencional?",
+    a: "Não. A terapia convencional foca na narrativa emocional e no histórico de traumas. A Reestruturação Natural do Ser foca na organização do seu sistema sensorial, na remoção de entulhos e na calibração de filtros. É um processo técnico e prático de gestão de energia e percepção.",
+  },
+  {
+    q: "Como sei se tenho Alta Percepção?",
+    a: "Se você sente que absorve o ambiente como uma esponja, tem dificuldade em distinguir o que é seu do que é do outro, sofre de esgotamento crônico mesmo sem esforço físico e sente que o mundo é \u201cbarulhento demais\u201d, o seu sistema está operando em alta percepção, mas sem a estrutura necessária.",
+  },
+  { q: "Quanto tempo dura a Consulta Diagnóstico?", a: "2 horas." },
+  {
+    q: "Quanto tempo dura cada sessão?",
+    a: "Cada sessão do ciclo tem duração de 80 minutos, focada exclusivamente na execução do protocolo de reestruturação. Nosso tempo é dedicado à precisão, não à conversa genérica.",
+  },
+  {
+    q: "O método funciona para quem não tem crenças religiosas?",
+    a: "Sim. O método é estritamente clínico e estrutural. Não trabalhamos com dogmas ou religião, mas com a organização do seu sistema humano. A eficácia da reestruturação é sentida na prática, independentemente da sua visão de mundo.",
+  },
+];
+
+/* --------------------------------------------------------------------- page */
+
+function Page() {
+  useReveal();
+
+  return (
+    <main className="grain overflow-x-hidden bg-background">
+      <GoldCursor />
+      <Nav />
+      <Hero />
+      <Identificacao />
+      <Impacto />
+      <Descompasso />
+      <Metodo />
+      <Jornada />
+      <SobreLeandra />
+      <ParaQuem />
+      <Depoimentos />
+      <Faq />
+      <Garantia />
+      <CtaFinal />
+      <Footer />
+    </main>
+  );
+}
+
+/* ----------------------------------------------------------------------- nav */
 
 function Nav() {
-  const [scrolled, setScrolled] = useState(false);
+  const [solid, setSolid] = useState(false);
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 30);
-    on();
-    window.addEventListener("scroll", on);
-    return () => window.removeEventListener("scroll", on);
+    const onScroll = () => setSolid(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 transition-all duration-500 ${
-        scrolled ? "py-3" : "py-6"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
+        solid
+          ? "border-b border-forest/10 bg-pearl/85 py-4 backdrop-blur-xl"
+          : "border-b border-transparent py-7"
       }`}
     >
-      <div className="mx-auto max-w-6xl px-6">
-        <div
-          className={`flex items-center justify-between rounded-full px-5 py-3 transition-all duration-500 ${
-            scrolled ? "glass shadow-soft" : ""
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-6 px-6 md:px-12">
+        <a href="#top" className="min-w-0">
+          <span
+            className={`block truncate font-serif text-lg tracking-[0.18em] transition-colors duration-700 ${
+              solid ? "text-forest" : "text-pearl"
+            }`}
+          >
+            LEANDRA ESTRELAH
+          </span>
+          <span
+            className={`tracking-brand text-[0.55rem] transition-colors duration-700 ${
+              solid ? "text-muted-foreground" : "text-pearl/70"
+            }`}
+          >
+            Reestruturação Natural do Ser
+          </span>
+        </a>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noreferrer"
+          data-cta="nav"
+          className={`shrink-0 border px-5 py-3 text-[0.6rem] tracking-brand transition-all duration-700 ${
+            solid
+              ? "border-forest/25 text-forest hover:border-gold hover:text-gold"
+              : "border-pearl/35 text-pearl hover:border-gold hover:text-gold"
           }`}
         >
-          <a href="#top" className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-gold text-[oklch(0.22_0.02_230)] shadow-soft">
-              <LotusIcon className="h-4 w-4" />
-            </span>
-            <span className="font-serif text-lg tracking-tight text-primary">Leandra Estrelah</span>
-          </a>
-          <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-            <a href="#metodo" className="transition-colors hover:text-primary">Método</a>
-            <a href="#atendimento" className="transition-colors hover:text-primary">Atendimento</a>
-            <a href="#quiz" className="transition-colors hover:text-primary">Quiz</a>
-            <a href="#faq" className="transition-colors hover:text-primary">FAQ</a>
-          </nav>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="group inline-flex items-center gap-2 rounded-full bg-petrol px-4 py-2 text-sm text-primary-foreground shadow-soft transition-transform hover:scale-[1.03]"
-          >
-            <span>Conversar</span>
-            <ArrowIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </a>
-        </div>
+          <span className="hidden sm:inline">Consulta Diagnóstico</span>
+          <span className="sm:hidden">Agendar</span>
+        </a>
       </div>
     </header>
   );
 }
 
-/* ---------------- Hero ---------------- */
+/* ---------------------------------------------------------------------- hero */
 
 function Hero() {
+  const [y, setY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <section id="top" className="relative isolate min-h-[100svh] overflow-hidden bg-hero">
-      {/* Video placeholder */}
-      <div className="absolute inset-0 -z-10">
+    <section id="top" className="relative flex min-h-screen items-center overflow-hidden">
+      {/* PLACEHOLDER — vídeo de fundo. Substitua por <video src="..." autoPlay muted loop playsInline /> */}
+      <div className="absolute inset-0">
         <div
-          data-video-placeholder="hero-background"
-          className="absolute inset-0 grid place-items-center"
+          className="animate-drift absolute inset-0"
+          style={{ transform: `translateY(${y * 0.12}px)` }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,color-mix(in_oklab,var(--warm)_85%,transparent))]" />
-          <span className="pointer-events-none absolute bottom-6 right-6 rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-            [ vídeo de fundo — placeholder ]
-          </span>
+          <img
+            src={olharAsset.url}
+            alt="Leandra Estrelah"
+            className="h-full w-full object-cover object-[60%_28%]"
+          />
         </div>
-        {/* Soft ambient orbs */}
-        <div className="absolute -left-32 top-24 h-96 w-96 rounded-full bg-sage opacity-40 blur-3xl animate-float-slow" />
-        <div className="absolute -right-24 top-40 h-[28rem] w-[28rem] rounded-full bg-lavender opacity-40 blur-3xl animate-float-slow [animation-delay:2s]" />
-        <div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-gold-soft opacity-40 blur-3xl animate-float-slow [animation-delay:4s]" />
+        <div className="absolute inset-0 bg-forest-deep/55" />
+        <div className="absolute inset-0 bg-linear-to-b from-forest-deep/75 via-forest-deep/25 to-forest-deep/90" />
+        <div className="leaf-shadow absolute inset-0" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-6 pt-32 pb-20 text-center">
-        <span className="animate-blur-in inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-primary">
-          <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-          Psicoterapia online · Alta percepção
-        </span>
-
-        <h1 className="animate-blur-in [animation-delay:120ms] mt-8 max-w-4xl text-balance font-serif text-5xl leading-[1.05] text-primary sm:text-6xl md:text-7xl">
-          Um espaço silencioso para{" "}
-          <em className="not-italic text-gradient-gold">reencontrar</em> quem você sempre foi.
-        </h1>
-
-        <p className="animate-blur-in [animation-delay:260ms] mt-6 max-w-xl text-balance text-lg leading-relaxed text-muted-foreground">
-          Terapia online para mulheres sensíveis, intensas e perceptivas.
-          Uma jornada delicada de volta para a sua própria calma.
-        </p>
-
-        <div className="animate-blur-in [animation-delay:400ms] mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-petrol px-8 py-4 text-primary-foreground shadow-glow transition-transform hover:scale-[1.03]"
-          >
-            <span className="relative z-10">Quero iniciar minha jornada</span>
-            <ArrowIcon className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            <span className="absolute inset-0 -translate-x-full bg-gold opacity-30 transition-transform duration-700 group-hover:translate-x-0" />
-          </a>
-          <a href="#metodo" className="text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline">
-            Conhecer o método →
-          </a>
+      <div className="relative mx-auto w-full max-w-6xl px-6 pt-32 pb-28 md:px-12">
+        <div className="animate-veil max-w-3xl">
+          <Eyebrow>Leandra Estrelah</Eyebrow>
+          <h1 className="mt-8 font-serif text-[clamp(2.9rem,9vw,7rem)] leading-[0.95] text-pearl text-balance">
+            Da exaustão
+            <br />
+            <span className="italic text-gold-soft">à potência.</span>
+          </h1>
+          <p className="mt-10 max-w-xl text-sm leading-relaxed text-pearl/75 md:text-base">
+            Reestruturação Natural do Ser para pessoas com Alta Percepção.
+          </p>
+          <div className="mt-12">
+            <Cta tone="light" />
+          </div>
         </div>
+      </div>
 
-        <div className="animate-blur-in [animation-delay:600ms] mt-24 flex items-center gap-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          <span className="h-px w-10 bg-border" />
-          <span>Role para sentir</span>
-          <span className="h-px w-10 bg-border" />
+      <div className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-3">
+        <span className="tracking-brand text-[0.55rem] text-pearl/50">Respire e desça</span>
+        <div className="h-12 w-px overflow-hidden bg-pearl/20">
+          <div className="animate-scroll-hint h-4 w-px bg-gold" />
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------------- "Você já sentiu que..." ---------------- */
+/* ------------------------------------------------------------- identificação */
 
-const feelings = [
-  "sente demais e nem sempre encontra palavras para explicar?",
-  "percebe o que os outros não notam — e isso pesa?",
-  "está sempre cuidando de todos, menos de si mesma?",
-  "carrega uma inquietação silenciosa, mesmo em dias bons?",
-  "sabe que precisa parar, mas não sabe por onde começar?",
-];
-
-function FeelSection() {
+function Identificacao() {
   return (
-    <section className="relative mx-auto max-w-5xl px-6 py-40">
-      <p className="reveal-on-scroll text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-        Uma pausa
-      </p>
-      <h2 className="reveal-on-scroll mt-6 text-center font-serif text-4xl leading-tight text-primary sm:text-5xl">
-        Você já sentiu que…
-      </h2>
+    <Section id="identificacao" className="bg-background">
+      <div className="reveal max-w-2xl">
+        <Eyebrow>Identificação</Eyebrow>
+        <h2 className="mt-8 font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-forest">
+          Você sente que…
+        </h2>
+        <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
+          Vive em estado de alerta constante e está exausta de tentar se encaixar em estruturas que
+          não foram feitas para você.
+        </p>
+      </div>
 
-      <div className="mt-20 space-y-10">
-        {feelings.map((f, i) => (
-          <div
-            key={i}
-            className="reveal-on-scroll flex items-start gap-6 border-b border-border/60 pb-8"
-            style={{ transitionDelay: `${i * 120}ms` }}
+      <div className="mt-20 grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+        {SINTOMAS.map((s, i) => (
+          <article
+            key={s}
+            className="reveal group relative bg-background p-10 transition-colors duration-700 hover:bg-card md:p-12"
+            style={{ transitionDelay: `${(i % 3) * 90}ms` }}
           >
-            <span className="mt-3 font-serif text-2xl text-gradient-gold">
+            <span className="font-serif text-xs italic text-gold/70">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <p className="text-balance font-serif text-2xl leading-snug text-primary sm:text-3xl">
-              {f}
+            <p className="mt-6 font-serif text-2xl leading-snug text-forest md:text-[1.7rem]">
+              {s}
             </p>
-          </div>
-        ))}
-      </div>
-
-      <p className="reveal-on-scroll mt-16 text-center text-lg text-muted-foreground">
-        Se algo aqui tocou você — talvez seja o momento de olhar para dentro com companhia.
-      </p>
-    </section>
-  );
-}
-
-/* ---------------- Video Presentation ---------------- */
-
-function VideoPresentation() {
-  return (
-    <section className="relative mx-auto max-w-6xl px-6 py-32">
-      <div className="reveal-on-scroll">
-        <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          Uma apresentação
-        </p>
-        <h2 className="mt-4 text-center font-serif text-4xl text-primary sm:text-5xl">
-          Olá, sou <em className="not-italic text-gradient-gold">Leandra Estrelah</em>.
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">
-          Terapeuta dedicada a mulheres sensíveis e perceptivas. É um prazer receber você aqui.
-        </p>
-      </div>
-
-      <div className="mt-20 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
-        {/* Portrait */}
-        <div className="reveal-on-scroll relative mx-auto w-full max-w-md">
-          <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-sage/40 via-lavender/30 to-gold-soft/40 blur-2xl" />
-          <div className="group relative overflow-hidden rounded-[2rem] shadow-glow">
-            <img
-              src={leandraAsset.url}
-              alt="Leandra Estrelah, terapeuta"
-              className="aspect-[4/5] h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-              loading="lazy"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-petrol-deep/50 via-transparent to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-              <div>
-                <p className="font-serif text-2xl text-warm">Leandra Estrelah</p>
-                <p className="text-xs uppercase tracking-[0.25em] text-warm/80">Terapeuta</p>
-              </div>
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-gold text-primary shadow-soft">
-                <LotusIcon className="h-4 w-4" />
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Video */}
-        <div className="reveal-on-scroll [transition-delay:180ms] group relative aspect-video overflow-hidden rounded-3xl bg-petrol shadow-glow">
-          <div
-            data-video-placeholder="youtube-or-vimeo"
-            className="absolute inset-0 grid place-items-center bg-[linear-gradient(135deg,color-mix(in_oklab,var(--petrol-deep)_90%,black),color-mix(in_oklab,var(--sage-deep)_70%,var(--petrol)))]"
-          >
-            <button
-              aria-label="Reproduzir vídeo de apresentação"
-              className="relative grid h-20 w-20 place-items-center rounded-full bg-warm/90 text-primary shadow-glow transition-transform duration-500 group-hover:scale-110"
-            >
-              <span className="absolute inset-0 animate-ping rounded-full bg-gold opacity-30" />
-              <PlayIcon className="relative h-7 w-7" />
-            </button>
-            <span className="absolute bottom-5 left-5 rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-primary">
-              [ vídeo — YouTube / Vimeo ]
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-/* ---------------- Method Timeline ---------------- */
-
-const method = [
-  {
-    title: "Acolhimento",
-    text: "Um primeiro encontro sem pressa. Escutar sua história como ela merece ser ouvida.",
-  },
-  {
-    title: "Mapeamento",
-    text: "Reconhecer os padrões emocionais, sensoriais e vinculares que moldam sua experiência.",
-  },
-  {
-    title: "Integração",
-    text: "Trabalhar corpo, emoção e narrativa em ritmo respeitoso à sua alta sensibilidade.",
-  },
-  {
-    title: "Transformação",
-    text: "Consolidar novas formas de estar no mundo — com clareza, presença e leveza.",
-  },
-];
-
-function MethodTimeline() {
-  return (
-    <section id="metodo" className="relative bg-gradient-to-b from-transparent via-secondary/40 to-transparent py-32">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="reveal-on-scroll text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">O método</p>
-          <h2 className="mt-4 font-serif text-4xl text-primary sm:text-5xl">
-            Uma jornada em quatro respirações
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Não é um passo a passo rígido. É um caminho que se adapta ao seu tempo interno.
-          </p>
-        </div>
-
-        <ol className="relative mt-20 space-y-16 before:absolute before:left-4 before:top-2 before:h-full before:w-px before:bg-gradient-to-b before:from-gold/60 before:via-sage/60 before:to-transparent md:before:left-1/2">
-          {method.map((m, i) => (
-            <li
-              key={i}
-              className={`reveal-on-scroll relative flex flex-col gap-6 md:grid md:grid-cols-2 md:items-center md:gap-16 ${
-                i % 2 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
-              style={{ transitionDelay: `${i * 120}ms` }}
-            >
-              <div className={`md:${i % 2 ? "text-left" : "text-right"} pl-12 md:pl-0`}>
-                <span className="font-serif text-6xl text-gradient-gold">
-                  0{i + 1}
-                </span>
-                <h3 className="mt-2 font-serif text-3xl text-primary">{m.title}</h3>
-                <p className="mt-3 text-muted-foreground">{m.text}</p>
-              </div>
-              <div className="pl-12 md:pl-0">
-                <div className="glass rounded-2xl p-6 shadow-soft">
-                  <div
-                    data-image-placeholder={`method-${i}`}
-                    className="grid aspect-[4/3] place-items-center rounded-xl bg-gradient-to-br from-sage/30 to-lavender/30 text-xs uppercase tracking-[0.2em] text-muted-foreground"
-                  >
-                    imagem — etapa {i + 1}
-                  </div>
-                </div>
-              </div>
-              <span className="absolute left-0 top-4 grid h-8 w-8 place-items-center rounded-full bg-gold text-primary shadow-soft md:left-1/2 md:-translate-x-1/2">
-                <span className="h-2 w-2 rounded-full bg-primary" />
-              </span>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Concept Cards ---------------- */
-
-const concepts = [
-  {
-    icon: EarIcon,
-    title: "Escuta profunda",
-    text: "Ir além das palavras. Ouvir o que o corpo, o silêncio e a hesitação também dizem.",
-  },
-  {
-    icon: LeafIcon,
-    title: "Alta percepção",
-    text: "Você não é ‘demais’. Você percebe mais — e isso pode se tornar sua maior força.",
-  },
-  {
-    icon: HeartIcon,
-    title: "Regulação emocional",
-    text: "Aprender a habitar as emoções sem se afogar nelas. Presença, não controle.",
-  },
-  {
-    icon: MoonIcon,
-    title: "Vínculo seguro",
-    text: "Reconstruir a confiança começa por um lugar onde você não precisa se explicar.",
-  },
-  {
-    icon: SunIcon,
-    title: "Autoconhecimento",
-    text: "Reconhecer padrões, honrar sua história e criar novos caminhos possíveis.",
-  },
-  {
-    icon: SparkIcon,
-    title: "Sentido e propósito",
-    text: "Traduzir sensibilidade em escolhas conscientes, alinhadas ao que importa.",
-  },
-];
-
-function ConceptCards() {
-  return (
-    <section className="relative mx-auto max-w-6xl px-6 py-32">
-      <div className="reveal-on-scroll text-center">
-        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Fundamentos</p>
-        <h2 className="mt-4 font-serif text-4xl text-primary sm:text-5xl">
-          Os alicerces do trabalho
-        </h2>
-      </div>
-
-      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {concepts.map((c, i) => (
-          <article
-            key={i}
-            className="reveal-on-scroll group relative overflow-hidden rounded-3xl border border-border/60 bg-card p-8 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-glow"
-            style={{ transitionDelay: `${i * 90}ms` }}
-          >
-            <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold-soft opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-60" />
-            <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-secondary text-primary shadow-soft">
-              <c.icon className="h-6 w-6" />
-            </span>
-            <h3 className="relative mt-6 font-serif text-2xl text-primary">{c.title}</h3>
-            <p className="relative mt-3 text-muted-foreground">{c.text}</p>
+            <span className="mt-8 block h-px w-0 bg-gold transition-all duration-1000 group-hover:w-12" />
           </article>
         ))}
       </div>
+
+      <p className="reveal mt-16 text-sm text-muted-foreground">
+        Se você reconhece dois ou mais destes sinais, o seu sistema está pedindo estrutura — não
+        diagnóstico.
+      </p>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------- impacto */
+
+function Impacto() {
+  return (
+    <section className="relative bg-pearl px-6 py-40 md:px-12 md:py-56">
+      <div className="leaf-shadow pointer-events-none absolute inset-0" />
+      <div className="relative mx-auto max-w-4xl text-center">
+        <p className="reveal font-serif text-[clamp(2.2rem,6.5vw,4.6rem)] leading-[1.08] text-forest text-balance">
+          O seu sistema não está quebrado.
+        </p>
+        <span className="reveal mx-auto mt-16 block h-16 w-px bg-gold/40" />
+        <p className="reveal mt-16 font-serif text-[clamp(2.2rem,6.5vw,4.6rem)] leading-[1.08] text-forest text-balance">
+          Ele apenas está funcionando{" "}
+          <span className="italic text-gold">sem filtros.</span>
+        </p>
+      </div>
     </section>
   );
 }
 
-/* ---------------- How it works ---------------- */
+/* -------------------------------------------------------------- descompasso */
 
-const steps = [
-  { t: "Você entra em contato", d: "Uma mensagem simples pelo WhatsApp para começarmos." },
-  { t: "Agendamos uma conversa", d: "Um encontro inicial para nos conhecermos e ajustarmos ritmo." },
-  { t: "Nossas sessões online", d: "Video-chamada segura, semanal, no conforto do seu espaço." },
-  { t: "Sua jornada continua", d: "Um caminho contínuo de escuta, integração e presença." },
-];
+function Descompasso() {
+  const [open, setOpen] = useState(false);
 
-function HowItWorks() {
   return (
-    <section id="atendimento" className="relative py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="reveal-on-scroll text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            Atendimento online
-          </p>
-          <h2 className="mt-4 font-serif text-4xl text-primary sm:text-5xl">
-            Como funciona, do primeiro passo à sua rotina
+    <Section id="descompasso" className="bg-forest text-pearl">
+      <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+        <div className="reveal">
+          <Eyebrow>O nome disso</Eyebrow>
+          <h2 className="mt-8 font-serif text-[clamp(2.4rem,6vw,4.2rem)] leading-[1.02] text-pearl">
+            Descompasso
+            <br />
+            <span className="italic text-gold-soft">Mediúnico</span>
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <div
-              key={i}
-              className="reveal-on-scroll group relative overflow-hidden rounded-3xl bg-card p-8 shadow-soft transition-all hover:-translate-y-1"
-              style={{ transitionDelay: `${i * 100}ms` }}
+        <div className="space-y-10">
+          {[
+            "Uma condição clínica que afeta pessoas de alta sensibilidade, atravessando as esferas física, mental, emocional e espiritual.",
+            "Não possui qualquer relação com dogmas, práticas ou instituições religiosas.",
+            "A alta percepção capta mais dados do ambiente do que o sistema consegue processar.",
+            "Sem filtragem, esse excesso vira entulho emocional — e o esgotamento resultante é frequentemente confundido com patologia.",
+          ].map((t, i) => (
+            <p
+              key={t}
+              className="reveal max-w-xl border-l border-gold/30 pl-6 text-sm leading-relaxed text-pearl/80 md:text-base"
+              style={{ transitionDelay: `${i * 110}ms` }}
             >
-              <span className="absolute right-6 top-6 font-serif text-5xl text-gold-soft/70 transition-transform duration-500 group-hover:scale-110">
-                {i + 1}
-              </span>
-              <div
-                data-image-placeholder={`step-${i}`}
-                className="grid aspect-square place-items-center rounded-2xl bg-gradient-to-br from-sage/25 via-lavender/20 to-gold-soft/25 text-[10px] uppercase tracking-[0.2em] text-muted-foreground"
-              >
-                ilustração
-              </div>
-              <h3 className="mt-6 font-serif text-xl text-primary">{s.t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-            </div>
+              {t}
+            </p>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
-/* ---------------- Quiz ---------------- */
-
-const questions = [
-  "Você percebe detalhes emocionais que outras pessoas não notam?",
-  "Sente-se rapidamente sobrecarregada em ambientes muito estimulantes?",
-  "Costuma refletir profundamente sobre situações do dia a dia?",
-  "Se emociona com facilidade com arte, música ou histórias?",
-  "Sente que precisa de mais tempo sozinha para se recompor?",
-];
-
-function Quiz() {
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<boolean[]>([]);
-  const done = step >= questions.length;
-  const score = answers.filter(Boolean).length;
-
-  const reset = () => {
-    setStep(0);
-    setAnswers([]);
-  };
-
-  return (
-    <section id="quiz" className="relative py-32">
-      <div className="mx-auto max-w-3xl px-6">
-        <div className="reveal-on-scroll text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Auto-percepção</p>
-          <h2 className="mt-4 font-serif text-4xl text-primary sm:text-5xl">
-            Você apresenta sinais de Alta Percepção?
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            Um convite delicado para se olhar. Sem julgamentos. Sem diagnóstico.
-          </p>
-        </div>
-
-        <div className="reveal-on-scroll mt-14 rounded-3xl bg-card p-8 shadow-glow sm:p-12">
-          {!done ? (
-            <div key={step} className="animate-blur-in">
-              <div className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                <span>Pergunta {step + 1} de {questions.length}</span>
-                <span className="text-gradient-gold">{Math.round(((step) / questions.length) * 100)}%</span>
-              </div>
-              <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-secondary">
-                <div
-                  className="h-full bg-gold transition-all duration-700"
-                  style={{ width: `${(step / questions.length) * 100}%` }}
-                />
-              </div>
-
-              <p className="mt-10 font-serif text-2xl leading-snug text-primary sm:text-3xl">
-                {questions[step]}
-              </p>
-
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                {[
-                  { label: "Sim, com frequência", val: true },
-                  { label: "Raramente", val: false },
-                ].map((opt) => (
-                  <button
-                    key={opt.label}
-                    onClick={() => {
-                      setAnswers((a) => [...a, opt.val]);
-                      setStep((s) => s + 1);
-                    }}
-                    className="group flex-1 rounded-2xl border border-border bg-warm px-6 py-4 text-left transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-soft"
-                  >
-                    <span className="font-serif text-lg text-primary">{opt.label}</span>
-                    <ArrowIcon className="ml-3 inline h-3.5 w-3.5 text-gold transition-transform group-hover:translate-x-1" />
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="animate-blur-in text-center">
-              <div className="mx-auto grid h-28 w-28 place-items-center rounded-full bg-gold shadow-glow">
-                <span className="font-serif text-4xl text-primary">{score}/{questions.length}</span>
-              </div>
-              <h3 className="mt-8 font-serif text-3xl text-primary">
-                {score >= 4
-                  ? "Você provavelmente é uma mulher de alta percepção."
-                  : score >= 2
-                    ? "Você apresenta alguns sinais de alta sensibilidade."
-                    : "Você tende a uma percepção mais serena e regulada."}
-              </h3>
-              <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-                Este é apenas um retrato inicial. Um espaço terapêutico pode ajudar você a compreender com mais profundidade.
-              </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-petrol px-6 py-3 text-primary-foreground shadow-soft transition-transform hover:scale-[1.03]"
-                >
-                  Conversar no WhatsApp
-                  <ArrowIcon className="h-3.5 w-3.5" />
-                </a>
-                <button
-                  onClick={reset}
-                  className="rounded-full border border-border bg-transparent px-6 py-3 text-sm text-primary transition-colors hover:bg-secondary"
-                >
-                  Refazer o quiz
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Testimonials ---------------- */
-
-const testimonials = [
-  {
-    q: "Encontrei um espaço onde finalmente pude respirar sem me explicar.",
-    n: "M., 34",
-  },
-  {
-    q: "A escuta é tão precisa que parece que ela lê o que eu não digo.",
-    n: "L., 41",
-  },
-  {
-    q: "Depois de meses, voltei a dormir com o corpo leve.",
-    n: "R., 29",
-  },
-  {
-    q: "A terapia online não me distanciou — me trouxe presença.",
-    n: "A., 37",
-  },
-];
-
-function Testimonials() {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setI((v) => (v + 1) % testimonials.length), 6000);
-    return () => clearInterval(id);
-  }, []);
-  return (
-    <section className="relative bg-secondary/40 py-32">
-      <div className="mx-auto max-w-4xl px-6">
-        <div className="reveal-on-scroll text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            Quem já sentiu
-          </p>
-          <h2 className="mt-4 font-serif text-4xl text-primary sm:text-5xl">
-            Palavras de quem caminhou
-          </h2>
-        </div>
-
-        <div className="reveal-on-scroll mt-16 overflow-hidden rounded-3xl bg-card p-10 shadow-soft sm:p-16">
-          <div
-            className="flex transition-transform duration-700 ease-out"
-            style={{ transform: `translateX(-${i * 100}%)` }}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            className="reveal inline-flex items-center gap-3 border border-pearl/25 px-7 py-3.5 text-[0.65rem] tracking-brand text-pearl transition-all duration-700 hover:border-gold hover:text-gold"
           >
-            {testimonials.map((t, k) => (
-              <blockquote key={k} className="w-full shrink-0 px-2 text-center">
-                <QuoteIcon className="mx-auto h-8 w-8 text-gold" />
-                <p className="mt-6 text-balance font-serif text-2xl leading-snug text-primary sm:text-3xl">
-                  “{t.q}”
-                </p>
-                <footer className="mt-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                  {t.n}
-                </footer>
-              </blockquote>
-            ))}
-          </div>
+            {open ? "Recolher" : "Entenda melhor"}
+            <span className={`transition-transform duration-700 ${open ? "rotate-180" : ""}`}>
+              ↓
+            </span>
+          </button>
 
-          <div className="mt-8 flex items-center justify-center gap-2">
-            {testimonials.map((_, k) => (
-              <button
-                key={k}
-                aria-label={`Depoimento ${k + 1}`}
-                onClick={() => setI(k)}
-                className={`h-1.5 rounded-full transition-all ${
-                  k === i ? "w-8 bg-gold" : "w-2 bg-border"
-                }`}
-              />
-            ))}
+          <div
+            className="grid transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
+          >
+            <div className="overflow-hidden">
+              <div className="max-w-xl space-y-6 border-t border-pearl/15 pt-8 text-sm leading-relaxed text-pearl/70">
+                <p>
+                  Trata-se de um fenômeno de processamento sensorial e energético, no qual o sistema
+                  humano, por ser altamente sensível, absorve e acumula um volume de dados que não
+                  consegue processar, resultando em sobrecarga sistêmica.
+                </p>
+                <p>
+                  Em casos crônicos, essa sobrecarga se expressa como depressão profunda, ansiedade
+                  generalizada, dores físicas constantes, dependência de medicação contínua e
+                  isolamento social. Reconhecer a origem estrutural é o que permite intervir com
+                  precisão em vez de apenas administrar sintomas.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </Section>
+  );
+}
+
+/* -------------------------------------------------------------------- método */
+
+function Metodo() {
+  return (
+    <Section id="metodo" className="bg-background">
+      <div className="reveal max-w-2xl">
+        <Eyebrow>O método</Eyebrow>
+        <h2 className="mt-8 font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-forest">
+          Reestruturação
+          <br />
+          <span className="italic">Natural do Ser</span>
+        </h2>
+        <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
+          Desenvolvido após anos de pesquisa, atendimentos e prática clínica. Um processo cíclico
+          que se inicia com dez sessões estruturadas e foi desenhado para quem busca autonomia —
+          não dependência.
+        </p>
+      </div>
+
+      <div className="mt-24 space-y-0">
+        {PILARES.map((p, i) => (
+          <div key={p.n} className="reveal" style={{ transitionDelay: `${i * 120}ms` }}>
+            <div className="grid gap-8 border-t border-border py-14 md:grid-cols-[auto_1fr_1.2fr] md:gap-16">
+              <span className="font-serif text-4xl italic text-gold/60 md:text-5xl">{p.n}</span>
+              <h3 className="font-serif text-3xl leading-tight text-forest md:text-[2.4rem]">
+                {p.t}
+              </h3>
+              <p className="max-w-md text-sm leading-relaxed text-muted-foreground">{p.d}</p>
+            </div>
+            {i < PILARES.length - 1 && (
+              <div className="flex justify-center">
+                <span className="h-10 w-px bg-gold/30" />
+              </div>
+            )}
+          </div>
+        ))}
+        <div className="border-t border-border" />
+      </div>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------- jornada */
+
+function Jornada() {
+  return (
+    <Section id="jornada" className="bg-card">
+      <div className="reveal max-w-2xl">
+        <Eyebrow>A jornada</Eyebrow>
+        <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
+          Três movimentos,
+          <br />
+          <span className="italic">um mesmo comando.</span>
+        </h2>
+      </div>
+
+      <div className="mt-24 grid gap-16 md:grid-cols-3 md:gap-10">
+        {JORNADA.map((j, i) => (
+          <div key={j.t} className="reveal relative" style={{ transitionDelay: `${i * 140}ms` }}>
+            <svg
+              viewBox="0 0 64 64"
+              aria-hidden
+              className="h-14 w-14 text-gold"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            >
+              {i === 0 && (
+                <>
+                  <circle cx="32" cy="32" r="20" />
+                  <path d="M32 12v40M12 32h40" opacity="0.4" />
+                  <circle cx="32" cy="32" r="3" />
+                </>
+              )}
+              {i === 1 && (
+                <>
+                  <path d="M10 44c8-26 36-26 44 0" />
+                  <path d="M32 18v26" />
+                  <circle cx="32" cy="44" r="2.5" />
+                </>
+              )}
+              {i === 2 && (
+                <>
+                  <path d="M32 52V22" />
+                  <path d="M32 30c-6-8-14-8-14-8s0 10 14 10z" />
+                  <path d="M32 38c6-9 14-9 14-9s0 11-14 11z" />
+                </>
+              )}
+            </svg>
+            <p className="mt-8 tracking-brand text-[0.55rem] text-gold">Etapa {i + 1}</p>
+            <h3 className="mt-4 font-serif text-3xl text-forest">{j.t}</h3>
+            <p className="mt-2 text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+              {j.s}
+            </p>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{j.d}</p>
+            {i < JORNADA.length - 1 && (
+              <span className="absolute top-7 -right-5 hidden h-px w-10 bg-gold/30 md:block" />
+            )}
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+/* --------------------------------------------------------------------- sobre */
+
+function SobreLeandra() {
+  return (
+    <section id="sobre" className="bg-background">
+      {/* bloco editorial 1 — olhar firme */}
+      <div className="grid items-stretch lg:grid-cols-2">
+        <div className="reveal relative min-h-[70vh] overflow-hidden lg:min-h-[110vh]">
+          <img
+            src={olharAsset.url}
+            alt="Leandra Estrelah, terapeuta, olhando diretamente para a câmera"
+            loading="lazy"
+            className="h-full w-full object-cover object-[55%_25%] transition-transform duration-[2200ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04]"
+          />
+          <div className="leaf-shadow absolute inset-0" />
+        </div>
+        <div className="flex items-center px-6 py-24 md:px-16 lg:px-20">
+          <div className="reveal max-w-lg">
+            <Eyebrow>Sobre Leandra</Eyebrow>
+            <h2 className="mt-8 font-serif text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.05] text-forest">
+              A precisão que o
+              <br />
+              <span className="italic">seu sistema exige</span>
+            </h2>
+            <div className="mt-10 space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
+              <p>
+                Sou terapeuta especializada na reestruturação de sistemas de alta percepção — e eu
+                mesma sei o que é sentir o mundo na pele de uma forma intensa demais, pois também
+                possuo altas percepções e um cérebro neurodivergente.
+              </p>
+              <p>
+                Minha trajetória não foi construída apenas no campo clínico, mas na observação
+                técnica de como sistemas de alta percepção operam sob sobrecarga. Entendi, na
+                prática, que o acolhimento genérico é insuficiente para quem possui uma constituição
+                de alta precisão.
+              </p>
+              <p>
+                Não trabalho com suposições ou narrativas infinitas; trabalho com o mapeamento de
+                falhas estruturais no seu Canal Vital. A precisão que o seu diagnóstico exige vem da
+                minha capacidade de isolar o que é ruído do ambiente do que é a sua potência real.
+              </p>
+              <p className="border-l border-gold/40 pl-6 font-serif text-xl leading-snug text-forest italic md:text-2xl">
+                Minha função não é ser sua terapeuta eterna, mas a engenheira que vai te entregar o
+                manual de operação do seu próprio sistema.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* bloco editorial 2 — sorriso */}
+      <div className="grid items-stretch lg:grid-cols-2">
+        <div className="order-2 flex items-center px-6 py-24 md:px-16 lg:order-1 lg:px-20">
+          <div className="reveal max-w-lg space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
+            <Eyebrow>Presença</Eyebrow>
+            <p>
+              Desenvolvi o método da Reestruturação Natural do Ser ao observar que o sofrimento de
+              pessoas sensíveis não era causado por desequilíbrios mentais, mas pela ausência de uma
+              estrutura lógica de filtragem do mundo externo.
+            </p>
+            <p>
+              Meu trabalho é aplicar a engenharia necessária para que a sua sensibilidade deixe de
+              ser um fardo e passe a ser a sua maior ferramenta de comando e presença no mundo.
+            </p>
+          </div>
+        </div>
+        <div className="reveal relative order-1 min-h-[70vh] overflow-hidden lg:order-2 lg:min-h-[100vh]">
+          <img
+            src={sorrisoAsset.url}
+            alt="Leandra Estrelah sorrindo, gesticulando com as mãos"
+            loading="lazy"
+            className="h-full w-full object-cover object-[40%_30%] transition-transform duration-[2200ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04]"
+          />
+          <div className="leaf-shadow absolute inset-0" />
+        </div>
+      </div>
+
+      {/* placeholder vídeo institucional */}
+      <Section className="bg-background">
+        <div className="reveal">
+          <Eyebrow>Vídeo institucional</Eyebrow>
+          <h3 className="mt-6 font-serif text-3xl text-forest md:text-4xl">
+            Uma conversa, em breve
+          </h3>
+        </div>
+        <div className="reveal mt-12 flex aspect-[16/9] w-full items-center justify-center border border-border bg-card">
+          <div className="text-center">
+            <svg
+              viewBox="0 0 64 64"
+              aria-hidden
+              className="mx-auto h-12 w-12 text-gold"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="0.8"
+            >
+              <circle cx="32" cy="32" r="22" />
+              <path d="M27 24l14 8-14 8z" />
+            </svg>
+            <p className="mt-6 tracking-brand text-[0.6rem] text-muted-foreground">
+              Vídeo de apresentação em breve
+            </p>
+            <p className="mt-3 text-xs text-muted-foreground/70">
+              {/* PLACEHOLDER — substituir por <video> quando o institucional for gravado */}
+              Espaço reservado para o vídeo de Leandra Estrelah
+            </p>
+          </div>
+        </div>
+      </Section>
     </section>
   );
 }
 
-/* ---------------- FAQ ---------------- */
+/* ---------------------------------------------------------------- para quem */
 
-const faqs = [
-  {
-    q: "Como funciona a terapia online?",
-    a: "Sessões por vídeo em plataforma segura, com a mesma profundidade de um encontro presencial.",
-  },
-  {
-    q: "Qual a duração e frequência?",
-    a: "Cada sessão dura 50 minutos, geralmente com frequência semanal.",
-  },
-  {
-    q: "Preciso de algum equipamento especial?",
-    a: "Apenas um lugar tranquilo, conexão estável e fones de ouvido.",
-  },
-  {
-    q: "E se eu não souber por onde começar?",
-    a: "Você não precisa saber. Basta chegar. O primeiro encontro é para isso.",
-  },
-  {
-    q: "Atende fora do Brasil?",
-    a: "Sim — atendo mulheres brasileiras em qualquer fuso, com agenda flexível.",
-  },
-];
-
-function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+function ParaQuem() {
   return (
-    <section id="faq" className="relative py-32">
-      <div className="mx-auto max-w-3xl px-6">
-        <div className="reveal-on-scroll text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Perguntas</p>
-          <h2 className="mt-4 font-serif text-4xl text-primary sm:text-5xl">
-            Antes de começar, talvez você queira saber
+    <Section id="para-quem" className="bg-forest text-pearl">
+      <div className="reveal max-w-2xl">
+        <Eyebrow>Para quem é</Eyebrow>
+        <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-pearl">
+          Feito para poucos.
+          <br />
+          <span className="italic text-gold-soft">Reconhecido por quem sente.</span>
+        </h2>
+      </div>
+
+      <div className="mt-20 grid gap-px border border-pearl/15 bg-pearl/15 md:grid-cols-3">
+        {PARA_QUEM.map((p, i) => (
+          <article
+            key={p.t}
+            className="reveal bg-forest p-10 md:p-12"
+            style={{ transitionDelay: `${i * 120}ms` }}
+          >
+            <span className="font-serif text-xs italic text-gold">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 className="mt-6 font-serif text-2xl text-pearl md:text-[1.8rem]">{p.t}</h3>
+            <p className="mt-5 text-sm leading-relaxed text-pearl/70">{p.d}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+/* --------------------------------------------------------------- depoimentos */
+
+function Depoimentos() {
+  return (
+    <Section id="depoimentos" className="bg-background">
+      <div className="reveal max-w-2xl">
+        <Eyebrow>Prova social</Eyebrow>
+        <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
+          Quem já atravessou
+        </h2>
+      </div>
+
+      <figure className="reveal mt-16">
+        <div className="overflow-hidden border border-border bg-card">
+          <video
+            src={depoimentoAsset.url}
+            controls
+            playsInline
+            preload="metadata"
+            className="max-h-[80vh] w-full bg-forest-deep object-contain"
+          />
+        </div>
+        <figcaption className="mt-5 text-xs tracking-[0.16em] text-muted-foreground uppercase">
+          Depoimento em vídeo
+        </figcaption>
+      </figure>
+
+      <div className="mt-24 grid gap-px border border-border bg-border md:grid-cols-3">
+        {DEPOIMENTOS.map((d, i) => (
+          <blockquote
+            key={d.nome}
+            className="reveal flex flex-col justify-between bg-background p-10 md:p-12"
+            style={{ transitionDelay: `${i * 120}ms` }}
+          >
+            <p className="font-serif text-xl leading-snug text-forest italic md:text-[1.45rem]">
+              “{d.texto}”
+            </p>
+            <footer className="mt-10">
+              <p className="text-sm text-forest">{d.nome}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{d.meta}</p>
+            </footer>
+          </blockquote>
+        ))}
+        {/* Espaço preparado para novos depoimentos: basta adicionar itens em DEPOIMENTOS */}
+      </div>
+    </Section>
+  );
+}
+
+/* ----------------------------------------------------------------------- faq */
+
+function Faq() {
+  const [open, setOpen] = useState<number | null>(0);
+
+  return (
+    <Section id="faq" className="bg-card">
+      <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+        <div className="reveal">
+          <Eyebrow>Perguntas frequentes</Eyebrow>
+          <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.05] text-forest">
+            Antes de
+            <br />
+            <span className="italic">começarmos</span>
           </h2>
         </div>
 
-        <div className="reveal-on-scroll mt-14 divide-y divide-border rounded-3xl border border-border bg-card">
-          {faqs.map((f, i) => {
+        <div className="border-t border-border">
+          {FAQ.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div key={i}>
+              <div key={f.q} className="reveal border-b border-border">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between gap-6 px-6 py-6 text-left transition-colors hover:bg-secondary/40"
+                  aria-expanded={isOpen}
+                  className="flex w-full items-start justify-between gap-8 py-8 text-left"
                 >
-                  <span className="font-serif text-lg text-primary sm:text-xl">{f.q}</span>
+                  <span className="font-serif text-xl text-forest md:text-2xl">{f.q}</span>
                   <span
-                    className={`grid h-8 w-8 shrink-0 place-items-center rounded-full bg-secondary text-primary transition-transform ${
+                    className={`mt-1 shrink-0 text-gold transition-transform duration-700 ${
                       isOpen ? "rotate-45" : ""
                     }`}
                   >
-                    <PlusIcon className="h-3.5 w-3.5" />
+                    +
                   </span>
                 </button>
                 <div
-                  className="grid overflow-hidden transition-all duration-500 ease-out"
-                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                  className="grid transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
                 >
-                  <div className="min-h-0">
-                    <p className="px-6 pb-6 text-muted-foreground">{f.a}</p>
+                  <div className="overflow-hidden">
+                    <p className="max-w-xl pr-10 pb-9 text-sm leading-relaxed text-muted-foreground">
+                      {f.a}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -789,157 +866,75 @@ function FAQ() {
           })}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
-/* ---------------- Final CTA ---------------- */
+/* ------------------------------------------------------------------ garantia */
 
-function FinalCTA() {
+function Garantia() {
   return (
-    <section className="relative overflow-hidden py-40">
-      <div className="absolute inset-0 -z-10 bg-petrol" />
-      <div className="absolute inset-0 -z-10 opacity-50">
-        <div className="absolute -left-32 top-10 h-96 w-96 rounded-full bg-sage blur-3xl animate-float-slow" />
-        <div className="absolute -right-24 bottom-10 h-[28rem] w-[28rem] rounded-full bg-lavender blur-3xl animate-float-slow [animation-delay:3s]" />
-      </div>
-
-      <div className="reveal-on-scroll mx-auto max-w-3xl px-6 text-center text-primary-foreground">
-        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.28em] backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-          Um convite
-        </span>
-        <h2 className="mt-8 font-serif text-5xl leading-[1.05] sm:text-6xl">
-          Sua sensibilidade sempre foi{" "}
-          <em className="not-italic text-gradient-gold">um dom.</em>
-          <br /> Agora ela também pode ser um caminho.
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl text-lg text-primary-foreground/80">
-          Se você chegou até aqui, algo já pediu passagem. Vamos conversar.
-        </p>
-
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="group mt-12 inline-flex items-center gap-3 rounded-full bg-gold px-10 py-5 text-lg text-[oklch(0.22_0.02_230)] shadow-glow transition-transform hover:scale-[1.03]"
+    <Section className="bg-background">
+      <div className="reveal mx-auto max-w-2xl text-center">
+        <svg
+          viewBox="0 0 64 64"
+          aria-hidden
+          className="mx-auto h-12 w-12 text-gold"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="0.8"
         >
-          <WhatsAppIcon className="h-5 w-5" />
-          Iniciar minha jornada agora
-          <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </a>
+          <path d="M32 8l20 8v16c0 12-8 20-20 24C20 52 12 44 12 32V16z" />
+          <path d="M24 32l6 6 12-13" />
+        </svg>
+        <h2 className="mt-10 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.08] text-forest">
+          Compromisso com a sua clareza.
+        </h2>
+        <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          Se, ao final da Consulta Diagnóstico, você não sentir que identificamos a raiz do seu
+          descompasso e que o caminho da sua reestruturação está claro, devolvo integralmente o
+          valor investido.
+        </p>
+      </div>
+    </Section>
+  );
+}
+
+/* ----------------------------------------------------------------- cta final */
+
+function CtaFinal() {
+  return (
+    <section className="relative overflow-hidden bg-forest-deep px-6 py-40 text-pearl md:px-12 md:py-56">
+      <div className="leaf-shadow pointer-events-none absolute inset-0" />
+      <div className="relative mx-auto max-w-4xl text-center">
+        <p className="reveal font-serif text-[clamp(2rem,6vw,4.4rem)] leading-[1.1] text-pearl text-balance">
+          A sua sensibilidade nunca foi um defeito.
+        </p>
+        <p className="reveal mt-6 font-serif text-[clamp(2rem,6vw,4.4rem)] leading-[1.1] text-gold-soft italic text-balance">
+          Ela apenas esperava uma direção.
+        </p>
+        <div className="reveal mt-16">
+          <Cta tone="light" />
+        </div>
       </div>
     </section>
   );
 }
+
+/* -------------------------------------------------------------------- footer */
 
 function Footer() {
   return (
-    <footer className="border-t border-border bg-warm py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-muted-foreground md:flex-row">
-        <div className="flex items-center gap-2">
-          <span className="grid h-7 w-7 place-items-center rounded-full bg-gold">
-            <LotusIcon className="h-3.5 w-3.5 text-primary" />
-          </span>
-          <span className="font-serif text-primary">Leandra Estrelah · Terapeuta</span>
+    <footer className="border-t border-pearl/10 bg-forest-deep px-6 py-14 text-pearl/60 md:px-12">
+      <div className="mx-auto grid w-full max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <p className="font-serif text-lg tracking-[0.18em] text-pearl">LEANDRA ESTRELAH</p>
+          <p className="mt-2 text-xs">Reestruturação Natural do Ser · Atendimento online</p>
         </div>
-        <p>© {new Date().getFullYear()} · Todos os direitos reservados</p>
-        <div className="flex gap-4">
-          <a href="#" className="hover:text-primary">Privacidade</a>
-          <a href="#" className="hover:text-primary">Termos</a>
-        </div>
+        <p className="text-xs">
+          © {new Date().getFullYear()} Leandra Estrelah. Todos os direitos reservados.
+        </p>
       </div>
     </footer>
-  );
-}
-
-/* ---------------- Icons ---------------- */
-
-function ArrowIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={p.className}>
-      <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-function PlusIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={p.className}>
-      <path d="M12 5v14M5 12h14" strokeLinecap="round" />
-    </svg>
-  );
-}
-function PlayIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={p.className}>
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  );
-}
-function QuoteIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={p.className}>
-      <path d="M7 7h4v4H8c0 3 1 4 3 5v2c-4 0-6-3-6-7V7zm9 0h4v4h-3c0 3 1 4 3 5v2c-4 0-6-3-6-7V7z" />
-    </svg>
-  );
-}
-function LotusIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={p.className}>
-      <path d="M12 3c1.5 3 1.5 6 0 9-1.5-3-1.5-6 0-9zM4 12c3-1 6 0 8 3-3 1-6 0-8-3zm16 0c-3-1-6 0-8 3 3 1 6 0 8-3z" strokeLinejoin="round" />
-      <path d="M4 15c2 3 5 4 8 4s6-1 8-4" strokeLinecap="round" />
-    </svg>
-  );
-}
-function WhatsAppIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={p.className}>
-      <path d="M20 3.5A11 11 0 0 0 3.4 17.9L2 22l4.2-1.4A11 11 0 1 0 20 3.5zM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-2.5.8.8-2.4-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.5 6.5 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2a.5.5 0 0 0 0-.5c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-1 2.3c0 1.4 1 2.7 1.2 2.9s2 3.1 5 4.3 3 .8 3.6.8a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z" />
-    </svg>
-  );
-}
-function EarIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={p.className}>
-      <path d="M6 10a6 6 0 1 1 12 0c0 3-3 4-4 6s-2 3-4 3a3 3 0 0 1-3-3" strokeLinecap="round" />
-      <path d="M10 10a2 2 0 1 1 4 0c0 2-2 2-2 4" strokeLinecap="round" />
-    </svg>
-  );
-}
-function LeafIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={p.className}>
-      <path d="M4 20c0-8 6-14 16-14 0 10-6 16-16 14z" strokeLinejoin="round" />
-      <path d="M4 20c4-4 8-6 12-6" strokeLinecap="round" />
-    </svg>
-  );
-}
-function HeartIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={p.className}>
-      <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" strokeLinejoin="round" />
-    </svg>
-  );
-}
-function MoonIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={p.className}>
-      <path d="M20 14A8 8 0 1 1 10 4a7 7 0 0 0 10 10z" strokeLinejoin="round" />
-    </svg>
-  );
-}
-function SunIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={p.className}>
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" strokeLinecap="round" />
-    </svg>
-  );
-}
-function SparkIcon(p: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className={p.className}>
-      <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" strokeLinejoin="round" />
-    </svg>
   );
 }
