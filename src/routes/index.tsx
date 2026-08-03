@@ -352,8 +352,8 @@ function Hero() {
             className="h-full w-full object-cover object-[60%_28%]"
           />
         </div>
-        <div className="absolute inset-0 bg-forest-deep/70" />
-        <div className="absolute inset-0 bg-linear-to-b from-forest-deep/80 via-forest-deep/35 to-forest-deep/90" />
+        <div className="absolute inset-0 bg-forest-deep/55" />
+        <div className="absolute inset-0 bg-linear-to-b from-forest-deep/75 via-forest-deep/25 to-forest-deep/90" />
         <div className="leaf-shadow absolute inset-0" />
       </div>
 
