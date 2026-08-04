@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
-import olharAsset from "@/assets/leandra-olhar.jpg.asset.json";
-import sorrisoAsset from "@/assets/leandra-sorriso.jpg.asset.json";
-import depoimentoAsset from "@/assets/depoimento.mp4.asset.json";
+const olharAsset = { url: "/media/leandra-olhar.jpg" };
+const sorrisoAsset = { url: "/media/leandra-sorriso.jpg" };
+const depoimentoAsset = { url: "/media/depoimento.mp4" };
 
 /** TODO: substituir pelo número real antes de publicar. */
 const WHATSAPP_URL =
