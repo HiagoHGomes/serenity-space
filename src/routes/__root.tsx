@@ -11,9 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import leandraAsset from "@/assets/leandra.png.asset.json";
 
-const shareImageUrl = leandraAsset.url;
+const shareImageUrl = "/media/leandra.png";
 
 function NotFoundComponent() {
   return (
