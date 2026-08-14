@@ -791,10 +791,19 @@ function Faq() {
         <div className="reveal">
           <Eyebrow>Perguntas frequentes</Eyebrow>
           <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.05] text-forest">
-            Antes de
+            A precisão que o
             <br />
-            <span className="italic">começarmos</span>
+            <span className="italic">seu sistema exige</span>
           </h2>
+          <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
+            Minha trajetória não foi construída apenas no campo clínico, mas na observação contínua
+            de como sistemas de alta percepção operam. Eu entendi que, para quem possui essa
+            sensibilidade, o acolhimento sem método é insuficiente. Foi a partir da minha própria
+            busca por estabilidade e da prática clínica que desenvolvi a Reestruturação Natural do
+            Ser. Não trabalho com suposições; trabalho com o mapeamento de falhas estruturais no
+            Canal Vital. Minha função aqui não é ser sua terapeuta eterna, mas a engenheira que vai
+            te entregar o manual de operação do seu próprio sistema.
+          </p>
         </div>
 
         <div className="border-t border-border">
