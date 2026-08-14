@@ -734,13 +734,10 @@ function Depoimentos() {
   return (
     <Section id="depoimentos" className="bg-background">
       <div className="reveal max-w-2xl">
-        <Eyebrow>Prova social</Eyebrow>
-        <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
-          Quem já atravessou
-        </h2>
+        <Eyebrow>Depoimentos</Eyebrow>
       </div>
 
-      <figure className="reveal mt-16">
+      <figure className="reveal mt-12">
         <div className="overflow-hidden border border-border bg-card">
           <video
             src={depoimentoAsset.url}
@@ -759,19 +756,25 @@ function Depoimentos() {
         {DEPOIMENTOS.map((d, i) => (
           <blockquote
             key={d.nome}
-            className="reveal flex flex-col justify-between bg-background p-10 md:p-12"
+            className="reveal flex min-h-[16rem] flex-col justify-between bg-background p-10 md:p-12"
             style={{ transitionDelay: `${i * 120}ms` }}
           >
-            <p className="font-serif text-xl leading-snug text-forest italic md:text-[1.45rem]">
-              “{d.texto}”
-            </p>
+            {d.texto ? (
+              <p className="font-serif text-lg leading-snug text-forest italic md:text-[1.3rem]">
+                “{d.texto}”
+              </p>
+            ) : (
+              // PLACEHOLDER — depoimento a ser inserido pela cliente
+              <p className="tracking-brand text-[0.6rem] text-muted-foreground/70">
+                Depoimento em breve
+              </p>
+            )}
             <footer className="mt-10">
               <p className="text-sm text-forest">{d.nome}</p>
               <p className="mt-1 text-xs text-muted-foreground">{d.meta}</p>
             </footer>
           </blockquote>
         ))}
-        {/* Espaço preparado para novos depoimentos: basta adicionar itens em DEPOIMENTOS */}
       </div>
     </Section>
   );
