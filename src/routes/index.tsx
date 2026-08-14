@@ -862,12 +862,13 @@ function Garantia() {
           <path d="M24 32l6 6 12-13" />
         </svg>
         <h2 className="mt-10 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.08] text-forest">
-          Compromisso com a sua clareza.
+          Compromisso com a sua clareza
         </h2>
         <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
-          Se, ao final da Consulta Diagnóstico, você não sentir que identificamos a raiz do seu
-          descompasso e que o caminho da sua reestruturação está claro, devolvo integralmente o
-          valor investido.
+          A Consulta Diagnóstico é o primeiro passo para o seu comando. Se, ao final do nosso
+          mapeamento, você não sentir que identificamos a raiz do seu descompasso e que o caminho
+          para a sua reestruturação está claro, eu devolvo integralmente o valor investido na
+          consulta. Você tem total segurança para entender como o seu sistema funciona, sem riscos.
         </p>
       </div>
     </Section>
@@ -881,11 +882,12 @@ function CtaFinal() {
     <section className="relative overflow-hidden bg-forest-deep px-6 py-40 text-pearl md:px-12 md:py-56">
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-4xl text-center">
-        <p className="reveal font-serif text-[clamp(2rem,6vw,4.4rem)] leading-[1.1] text-pearl text-balance">
-          A sua sensibilidade nunca foi um defeito.
+        <p className="reveal font-serif text-[clamp(1.8rem,5vw,3.6rem)] leading-[1.12] text-pearl text-balance">
+          A sua sensibilidade não é um defeito de fabricação. É um sistema de alta precisão que, até
+          hoje, operou sem filtro.
         </p>
-        <p className="reveal mt-6 font-serif text-[clamp(2rem,6vw,4.4rem)] leading-[1.1] text-gold-soft italic text-balance">
-          Ela apenas esperava uma direção.
+        <p className="reveal mt-6 font-serif text-[clamp(1.8rem,5vw,3.6rem)] leading-[1.12] text-gold-soft italic text-balance">
+          Está na hora de assumir o comando da sua estrutura.
         </p>
         <div className="reveal mt-16">
           <Cta tone="light" />
@@ -904,6 +906,25 @@ function Footer() {
         <div>
           <p className="font-serif text-lg tracking-[0.18em] text-pearl">LEANDRA ESTRELAH</p>
           <p className="mt-2 text-xs">Reestruturação Natural do Ser · Atendimento online</p>
+          <div className="mt-4 flex flex-wrap gap-5 text-xs">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              data-cta="footer-whatsapp"
+              className="transition-colors hover:text-gold"
+            >
+              WhatsApp · +55 98 8830-0203
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-gold"
+            >
+              @leandraestrelahterapeuta
+            </a>
+          </div>
         </div>
         <p className="text-xs">
           © {new Date().getFullYear()} Leandra Estrelah. Todos os direitos reservados.
