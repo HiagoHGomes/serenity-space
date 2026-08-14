@@ -79,21 +79,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Leandra Estrelah · Terapeuta — Uma jornada de acolhimento e alta percepção" },
+      { title: "Leandra Estrelah · Reestruturação Natural do Ser" },
       {
         name: "description",
         content:
-          "Atendimento psicoterapêutico online com Leandra Estrelah, terapeuta para mulheres de alta percepção. Um espaço seguro para reencontrar sua calma, clareza e força.",
+          "Reestruturação Natural do Ser: mapeamento e calibragem para pessoas com Alta Percepção. Atendimento online com Leandra Estrelah.",
       },
       { name: "author", content: "Leandra Estrelah" },
-      { property: "og:title", content: "Leandra Estrelah · Terapeuta — Uma jornada de acolhimento" },
+      { property: "og:title", content: "Leandra Estrelah · Reestruturação Natural do Ser" },
       { property: "og:image", content: shareImageUrl },
       { property: "og:image:type", content: "image/png" },
       { property: "og:image:alt", content: "Leandra Estrelah" },
       {
         property: "og:description",
         content:
-          "Um espaço digital elegante para mulheres sensíveis que buscam clareza, calma e transformação.",
+          "Mapeamento e calibragem para pessoas com Alta Percepção. Não é terapia convencional.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -119,10 +119,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: "Terapia Online",
+          name: "Leandra Estrelah · Reestruturação Natural do Ser",
           description:
-            "Psicoterapia online para mulheres de alta percepção e sensibilidade.",
+            "Reestruturação Natural do Ser: mapeamento e calibragem para pessoas com Alta Percepção.",
           areaServed: "BR",
+          sameAs: ["https://www.instagram.com/leandraestrelahterapeuta/"],
+          telephone: "+55 98 8830-0203",
         }),
       },
       // Placeholders: GA4, GTM, Meta Pixel, Google Ads conversion.

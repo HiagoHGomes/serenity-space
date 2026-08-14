@@ -5,9 +5,11 @@ const olharAsset = { url: "/media/leandra-olhar.jpg" };
 const sorrisoAsset = { url: "/media/leandra-sorriso.jpg" };
 const depoimentoAsset = { url: "/media/depoimento.mp4" };
 
-/** TODO: substituir pelo número real antes de publicar. */
+/** WhatsApp oficial: +55 98 8830-0203 */
 const WHATSAPP_URL =
-  "https://wa.me/5599999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20Consulta%20Diagn%C3%B3stico.";
+  "https://wa.me/559888300203?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20Consulta%20Diagn%C3%B3stico.";
+
+const INSTAGRAM_URL = "https://www.instagram.com/leandraestrelahterapeuta/";
 
 const CTA_LABEL = "Agendar minha Consulta Diagnóstico";
 
@@ -15,17 +17,20 @@ export const Route = createFileRoute("/")({
   component: Page,
   head: () => ({
     meta: [
-      { title: "Leandra Estrelah · Da exaustão à potência" },
+      { title: "Reestruturação Natural do Ser · Leandra Estrelah" },
       {
         name: "description",
         content:
-          "Reestruturação Natural do Ser: mapeamento e calibragem do Canal Vital para pessoas com Alta Percepção. Consulta Diagnóstico com Leandra Estrelah.",
+          "Mapeamento e Calibragem para pessoas com Alta Percepção. Engenharia de precisão para organizar o seu Canal Vital e retomar o comando da sua potência.",
       },
-      { property: "og:title", content: "Leandra Estrelah · Da exaustão à potência" },
+      {
+        property: "og:title",
+        content: "Reestruturação Natural do Ser · Leandra Estrelah",
+      },
       {
         property: "og:description",
         content:
-          "Reestruturação Natural do Ser para pessoas com Alta Percepção. Da exaustão à potência.",
+          "Mapeamento e Calibragem para pessoas com Alta Percepção. Não é terapia convencional.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -145,87 +150,52 @@ function Section({
 /* ------------------------------------------------------------------ content */
 
 const SINTOMAS = [
-  "Exaustão que o sono não resolve",
-  "Você absorve facilmente o ambiente",
-  "Ruído mental constante",
-  "Sensação de estar fora do lugar",
-  "Sobrecarga emocional que sufoca",
-  "Dificuldade em separar o que é seu do que é do outro",
-  "Insegurança e baixa autoestima",
-  "Procrastinação crônica",
-  "Sobrecarga sensorial diante de pessoas e ambientes",
+  "Exaustão crônica que o sono não resolve",
+  "Dificuldade em separar o que é seu sentimento e o que é absorção do ambiente",
+  "Ruído mental constante e sensação de estar fora de lugar",
+  "Incompreensão sobre o real sentido da vida",
+  "Sobrecarga sensorial diante de ambientes ou pessoas.",
+  "Alta carga emocional que te sufoca",
+  "Ausência de realização pessoal, procrastinação crônica e desvalorização pessoal - insegurança e baixa autoestima",
+  "Sobrepeso e Fobia social",
 ];
 
+const SINTOMAS_CRONICOS =
+  "E em casos crônicos: depressão profunda, ansiedade generalizada, dores físicas constantes, ideação suicida, dependência de remédios de uso contínuo, abuso de drogas e alcoolismo.";
+
 const PILARES = [
-  {
-    n: "01",
-    t: "Limpeza do Canal Vital",
-    d: "Desobstrução do que foi acumulado sem filtro. Retiramos o entulho emocional que o seu sistema absorveu do ambiente.",
-  },
-  {
-    n: "02",
-    t: "Calibragem",
-    d: "Instalação de filtros. A sua percepção continua ampla, mas passa a operar com critério — você escolhe o que entra.",
-  },
-  {
-    n: "03",
-    t: "Consolidação",
-    d: "Comando do seu sistema. Autonomia, não dependência: você recebe o manual de operação da sua própria estrutura.",
-  },
+  { n: "01", t: "Limpeza do seu canal vital", d: "Desobstrução." },
+  { n: "02", t: "Calibração", d: "Instalação de filtros." },
+  { n: "03", t: "Consolidação", d: "Comando do seu sistema." },
 ];
 
 const JORNADA = [
   {
     t: "Consulta Diagnóstico",
-    s: "2 horas",
-    d: "Mapeamos o seu sistema, identificamos os gargalos do Canal Vital e o que a sua estrutura precisa para voltar a funcionar.",
+    s: "O ponto de entrada",
+    d: "O primeiro passo é mapear o seu sistema. Nesta consulta, identificamos onde estão os gargalos do seu Canal Vital, olhamos cuidadosamente para a sua atual estrutura e o que ela precisa para retomar o funcionamento saudável.",
   },
   {
-    t: "Ciclo de 10 Sessões",
-    s: "80 minutos cada",
-    d: "Protocolo de limpeza, organização e calibragem para você retomar o domínio da sua estrutura.",
+    t: "O Ciclo de 10 Sessões",
+    s: "Protocolo",
+    d: "O protocolo de limpeza, organização e calibragem para você retomar o domínio da sua estrutura.",
   },
   {
-    t: "Sustentação",
+    t: "A Sustentação",
     s: "Vida real",
-    d: "Manutenções estratégicas para sustentar sua potência conforme os seus desafios evoluem.",
+    d: "A vida acontece. Após o domínio da estrutura, seguimos com manutenções estratégicas para sustentar sua potência conforme seus desafios evoluem.",
   },
 ];
 
-const PARA_QUEM = [
-  {
-    t: "Alta Percepção",
-    d: "Pessoas que captam mais do ambiente do que conseguem processar e sentem o mundo alto demais.",
-  },
-  {
-    t: "Resultados concretos",
-    d: "Quem busca precisão técnica e sobriedade, não narrativas infinitas nem acolhimento genérico.",
-  },
-  {
-    t: "Prontidão",
-    d: "Quem está pronta para deixar de ser esponja do ambiente e se tornar guardiã da própria potência.",
-  },
-];
-
-const DEPOIMENTOS = [
+const DEPOIMENTOS: { nome: string; meta: string; texto: string }[] = [
   {
     nome: "Chris Lima",
-    meta: "28 anos · Imperatriz, MA",
+    meta: "28 anos · Imperatriz — MA",
     texto:
-      "Isso ajuda muita gente não só a se compreender, mas sobre a própria sanidade. Se não fosse por ela, eu teria ficado louco só por achar que estava ficando.",
+      "Isso ajuda muita gente não só a se compreender, mas sobre a própria sanidade. Se não fosse pela senhora eu teria ficado louco só por achar que estava ficando. O espiritual é muito desconsiderado pelas pessoas. Quem sente se falar com algum profissional 95% vão dizer que a pessoa é esquizofrenica ou derivados. E a falta de alguém que já passou por algo parecido vai fazer a pessoa se sentir a mais solitária do mundo.",
   },
-  {
-    nome: "Anna Duailibe",
-    meta: "40 anos · São Luís, MA",
-    texto:
-      "Pela primeira vez alguém olhou para a minha sensibilidade como estrutura, e não como problema. Saí com clareza do que era meu e do que era do ambiente.",
-  },
-  {
-    nome: "Pedro Oliveira",
-    meta: "38 anos · São Paulo, SP",
-    texto:
-      "Um processo técnico, sóbrio e profundamente humano. A exaustão constante deu lugar a um comando que eu não sabia que existia em mim.",
-  },
+  { nome: "Anna Duailibe", meta: "40 anos · São Luís — MA", texto: "" },
+  { nome: "Pedro Oliveira", meta: "38 anos · São Paulo — SP", texto: "" },
 ];
 
 const FAQ = [
@@ -360,13 +330,15 @@ function Hero() {
       <div className="relative mx-auto w-full max-w-6xl px-6 pt-32 pb-28 md:px-12">
         <div className="animate-veil max-w-3xl">
           <Eyebrow>Leandra Estrelah</Eyebrow>
-          <h1 className="mt-8 font-serif text-[clamp(2.9rem,9vw,7rem)] leading-[0.95] text-pearl text-balance">
-            Da exaustão
-            <br />
-            <span className="italic text-gold-soft">à potência.</span>
+          <h1 className="mt-8 font-serif text-[clamp(2rem,5.2vw,4.2rem)] leading-[1.06] text-pearl text-balance">
+            Reestruturação Natural do Ser:{" "}
+            <span className="italic text-gold-soft">
+              Mapeamento e Calibragem para pessoas com Alta Percepção.
+            </span>
           </h1>
           <p className="mt-10 max-w-xl text-sm leading-relaxed text-pearl/75 md:text-base">
-            Reestruturação Natural do Ser para pessoas com Alta Percepção.
+            Não é terapia convencional. É engenharia de precisão para organizar o seu Canal Vital,
+            eliminar a sobrecarga e retomar o comando da sua potência.
           </p>
           <div className="mt-12">
             <Cta tone="light" />
@@ -389,14 +361,14 @@ function Hero() {
 function Identificacao() {
   return (
     <Section id="identificacao" className="bg-background">
-      <div className="reveal max-w-2xl">
-        <Eyebrow>Identificação</Eyebrow>
-        <h2 className="mt-8 font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-forest">
-          Você sente que…
+      <div className="reveal max-w-3xl">
+        <Eyebrow>O problema</Eyebrow>
+        <h2 className="mt-8 font-serif text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.12] text-forest text-balance">
+          Você vive em estado de alerta constante, sente que absorve o ruído do ambiente e está
+          exausta de tentar se encaixar em estruturas que não foram feitas para você?
         </h2>
-        <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
-          Vive em estado de alerta constante e está exausta de tentar se encaixar em estruturas que
-          não foram feitas para você.
+        <p className="mt-10 text-sm leading-relaxed text-muted-foreground">
+          Você reconhece dois ou mais desses sintomas?
         </p>
       </div>
 
@@ -410,7 +382,7 @@ function Identificacao() {
             <span className="font-serif text-xs italic text-gold/70">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <p className="mt-6 font-serif text-2xl leading-snug text-forest md:text-[1.7rem]">
+            <p className="mt-6 font-serif text-xl leading-snug text-forest break-words md:text-[1.55rem]">
               {s}
             </p>
             <span className="mt-8 block h-px w-0 bg-gold transition-all duration-1000 group-hover:w-12" />
@@ -418,9 +390,8 @@ function Identificacao() {
         ))}
       </div>
 
-      <p className="reveal mt-16 text-sm text-muted-foreground">
-        Se você reconhece dois ou mais destes sinais, o seu sistema está pedindo estrutura — não
-        diagnóstico.
+      <p className="reveal mt-16 max-w-3xl border-l border-gold/40 pl-6 text-sm leading-relaxed text-muted-foreground">
+        {SINTOMAS_CRONICOS}
       </p>
     </Section>
   );
@@ -433,13 +404,14 @@ function Impacto() {
     <section className="relative bg-pearl px-6 py-40 md:px-12 md:py-56">
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-4xl text-center">
-        <p className="reveal font-serif text-[clamp(2.2rem,6.5vw,4.6rem)] leading-[1.08] text-forest text-balance">
-          O seu sistema não está quebrado.
+        <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance">
+          O seu sistema não esta quebrado ele so esta funcionando{" "}
+          <span className="italic text-gold">sem filtro.</span>
         </p>
         <span className="reveal mx-auto mt-16 block h-16 w-px bg-gold/40" />
-        <p className="reveal mt-16 font-serif text-[clamp(2.2rem,6.5vw,4.6rem)] leading-[1.08] text-forest text-balance">
-          Ele apenas está funcionando{" "}
-          <span className="italic text-gold">sem filtros.</span>
+        <p className="reveal mt-16 font-serif text-[clamp(1.8rem,4.6vw,3.2rem)] leading-[1.12] text-forest text-balance">
+          O que você sente tem nome:{" "}
+          <span className="italic text-gold">Descompasso Mediúnico</span>
         </p>
       </div>
     </section>
@@ -456,19 +428,17 @@ function Descompasso() {
       <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
         <div className="reveal">
           <Eyebrow>O nome disso</Eyebrow>
-          <h2 className="mt-8 font-serif text-[clamp(2.4rem,6vw,4.2rem)] leading-[1.02] text-pearl">
-            Descompasso
+          <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.6rem)] leading-[1.05] text-pearl">
+            Mas o que é o
             <br />
-            <span className="italic text-gold-soft">Mediúnico</span>
+            <span className="italic text-gold-soft">Descompasso Mediúnico?</span>
           </h2>
         </div>
 
         <div className="space-y-10">
           {[
-            "Uma condição clínica que afeta pessoas de alta sensibilidade, atravessando as esferas física, mental, emocional e espiritual.",
-            "Não possui qualquer relação com dogmas, práticas ou instituições religiosas.",
-            "A alta percepção capta mais dados do ambiente do que o sistema consegue processar.",
-            "Sem filtragem, esse excesso vira entulho emocional — e o esgotamento resultante é frequentemente confundido com patologia.",
+            "É uma condição clínica que afeta pessoas de alta sensibilidade, manifestando-se através de um desequilíbrio que atravessa as esferas física, mental, emocional e espiritual.",
+            "É fundamental esclarecer que esta condição não possui qualquer relação com dogmas, práticas ou instituições religiosas.",
           ].map((t, i) => (
             <p
               key={t}
@@ -497,15 +467,15 @@ function Descompasso() {
             <div className="overflow-hidden">
               <div className="max-w-xl space-y-6 border-t border-pearl/15 pt-8 text-sm leading-relaxed text-pearl/70">
                 <p>
-                  Trata-se de um fenômeno de processamento sensorial e energético, no qual o sistema
-                  humano, por ser altamente sensível, absorve e acumula um volume de dados que não
-                  consegue processar, resultando em sobrecarga sistêmica.
+                  Trata-se de um fenômeno de processamento sensorial e energético, onde o sistema
+                  humano, por ser altamente sensível, acaba por absorver e acumular um volume de
+                  dados que não consegue processar, resultando em sobrecarga sistêmica.
                 </p>
                 <p>
-                  Em casos crônicos, essa sobrecarga se expressa como depressão profunda, ansiedade
-                  generalizada, dores físicas constantes, dependência de medicação contínua e
-                  isolamento social. Reconhecer a origem estrutural é o que permite intervir com
-                  precisão em vez de apenas administrar sintomas.
+                  O que chamamos de Descompasso Mediúnico acontece quando a alta percepção capta
+                  mais dados do ambiente do que o sistema consegue processar. Sem uma estrutura de
+                  filtragem, esse excesso se transforma em entulho emocional, gerando o esgotamento
+                  que muitas vezes é confundido com patologia.
                 </p>
               </div>
             </div>
@@ -529,9 +499,13 @@ function Metodo() {
           <span className="italic">Natural do Ser</span>
         </h2>
         <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
-          Desenvolvido após anos de pesquisa, atendimentos e prática clínica. Um processo cíclico
-          que se inicia com dez sessões estruturadas e foi desenhado para quem busca autonomia —
-          não dependência.
+          Após anos de pesquisa, atendimentos e descobertas que impactaram a mim mesma e a centenas
+          de pessoas que já atendi, desenvolvi a Restruturação Natural do Ser, um processo voltado
+          especificamente para pessoas com altas percepções e com alta sensibilidade.
+        </p>
+        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+          A Reestruturação Natural do Ser é um processo cíclico que se inicia com 10 sessões
+          estruturadas, e foi desenhado para quem busca autonomia e não dependência.
         </p>
       </div>
 
@@ -564,11 +538,11 @@ function Jornada() {
   return (
     <Section id="jornada" className="bg-card">
       <div className="reveal max-w-2xl">
-        <Eyebrow>A jornada</Eyebrow>
+        <Eyebrow>O caminho</Eyebrow>
         <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
-          Três movimentos,
+          A jornada em
           <br />
-          <span className="italic">um mesmo comando.</span>
+          <span className="italic">três etapas.</span>
         </h2>
       </div>
 
@@ -639,32 +613,29 @@ function SobreLeandra() {
         </div>
         <div className="flex items-center px-6 py-24 md:px-16 lg:px-20">
           <div className="reveal max-w-lg">
-            <Eyebrow>Sobre Leandra</Eyebrow>
-            <h2 className="mt-8 font-serif text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.05] text-forest">
-              A precisão que o
+            <Eyebrow>Presença</Eyebrow>
+            <h2 className="mt-8 font-serif text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] text-forest">
+              Porque eu mapeio e
               <br />
-              <span className="italic">seu sistema exige</span>
+              <span className="italic">reestruturo o seu sistema</span>
             </h2>
             <div className="mt-10 space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
               <p>
-                Sou terapeuta especializada na reestruturação de sistemas de alta percepção — e eu
-                mesma sei o que é sentir o mundo na pele de uma forma intensa demais, pois também
-                possuo altas percepções e um cérebro neurodivergente.
-              </p>
-              <p>
-                Minha trajetória não foi construída apenas no campo clínico, mas na observação
-                técnica de como sistemas de alta percepção operam sob sobrecarga. Entendi, na
+                A minha trajetória não foi construída apenas no campo clínico, mas na observação
+                técnica de como sistemas de alta percepção operam sob sobrecarga. Eu entendi, na
                 prática, que o acolhimento genérico é insuficiente para quem possui uma constituição
                 de alta precisão.
               </p>
               <p>
-                Não trabalho com suposições ou narrativas infinitas; trabalho com o mapeamento de
-                falhas estruturais no seu Canal Vital. A precisão que o seu diagnóstico exige vem da
-                minha capacidade de isolar o que é ruído do ambiente do que é a sua potência real.
+                Foi a partir da minha própria busca por estabilidade e da prática clínica que
+                desenvolvi a Reestruturação Natural do Ser. Não trabalho com suposições ou
+                narrativas infinitas; trabalho com o mapeamento de falhas estruturais no seu Canal
+                Vital. A precisão que o seu diagnóstico exige vem da minha capacidade de isolar o
+                que é ruído ambiente do que é a sua potência real.
               </p>
               <p className="border-l border-gold/40 pl-6 font-serif text-xl leading-snug text-forest italic md:text-2xl">
-                Minha função não é ser sua terapeuta eterna, mas a engenheira que vai te entregar o
-                manual de operação do seu próprio sistema.
+                Minha função aqui não é ser sua terapeuta eterna, mas a engenheira que vai te
+                entregar o manual de operação do seu próprio sistema.
               </p>
             </div>
           </div>
@@ -675,15 +646,24 @@ function SobreLeandra() {
       <div className="grid items-stretch lg:grid-cols-2">
         <div className="order-2 flex items-center px-6 py-24 md:px-16 lg:order-1 lg:px-20">
           <div className="reveal max-w-lg space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
-            <Eyebrow>Presença</Eyebrow>
+            <Eyebrow>Sobre Leandra Estrelah</Eyebrow>
             <p>
-              Desenvolvi o método da Reestruturação Natural do Ser ao observar que o sofrimento de
-              pessoas sensíveis não era causado por desequilíbrios mentais, mas pela ausência de uma
-              estrutura lógica de filtragem do mundo externo.
+              Sou terapeuta especializada na reestruturação de sistemas de alta percepção, e eu
+              mesma, sei o que é sentir o mundo na pele, de uma forma intensa demais, pois também
+              possuo altas percepções e um cérebro neurodivergente.
+            </p>
+            <p>
+              Desenvolvi o método da Reestruturação Natural do Ser após anos de prática clínica, ao
+              observar que o sofrimento de pessoas sensíveis não era causado por desequilíbrios
+              mentais, mas pela ausência de uma estrutura lógica de filtragem do mundo externo.
             </p>
             <p>
               Meu trabalho é aplicar a engenharia necessária para que a sua sensibilidade deixe de
               ser um fardo e passe a ser a sua maior ferramenta de comando e presença no mundo.
+            </p>
+            <p className="border-l border-gold/40 pl-6 font-serif text-xl leading-snug text-forest italic md:text-2xl">
+              A sua sensibilidade não é um defeito de fabricação. É um sistema de alta precisão que,
+              até hoje, operou sem filtro. Está na hora de assumir o comando da sua estrutura.
             </p>
           </div>
         </div>
@@ -738,29 +718,14 @@ function SobreLeandra() {
 function ParaQuem() {
   return (
     <Section id="para-quem" className="bg-forest text-pearl">
-      <div className="reveal max-w-2xl">
+      <div className="reveal max-w-3xl">
         <Eyebrow>Para quem é</Eyebrow>
-        <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-pearl">
-          Feito para poucos.
-          <br />
-          <span className="italic text-gold-soft">Reconhecido por quem sente.</span>
-        </h2>
-      </div>
-
-      <div className="mt-20 grid gap-px border border-pearl/15 bg-pearl/15 md:grid-cols-3">
-        {PARA_QUEM.map((p, i) => (
-          <article
-            key={p.t}
-            className="reveal bg-forest p-10 md:p-12"
-            style={{ transitionDelay: `${i * 120}ms` }}
-          >
-            <span className="font-serif text-xs italic text-gold">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3 className="mt-6 font-serif text-2xl text-pearl md:text-[1.8rem]">{p.t}</h3>
-            <p className="mt-5 text-sm leading-relaxed text-pearl/70">{p.d}</p>
-          </article>
-        ))}
+        <p className="mt-10 font-serif text-[clamp(1.7rem,4vw,2.8rem)] leading-[1.2] text-pearl text-balance">
+          Este processo é para pessoas de{" "}
+          <span className="italic text-gold-soft">Alta Percepção</span> que buscam resultados
+          concretos, valorizam a sobriedade técnica e estão prontas para deixar de ser esponja do
+          ambiente para se tornarem guardiãs da própria potência.
+        </p>
       </div>
     </Section>
   );
@@ -772,13 +737,10 @@ function Depoimentos() {
   return (
     <Section id="depoimentos" className="bg-background">
       <div className="reveal max-w-2xl">
-        <Eyebrow>Prova social</Eyebrow>
-        <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
-          Quem já atravessou
-        </h2>
+        <Eyebrow>Depoimentos</Eyebrow>
       </div>
 
-      <figure className="reveal mt-16">
+      <figure className="reveal mt-12">
         <div className="overflow-hidden border border-border bg-card">
           <video
             src={depoimentoAsset.url}
@@ -797,19 +759,25 @@ function Depoimentos() {
         {DEPOIMENTOS.map((d, i) => (
           <blockquote
             key={d.nome}
-            className="reveal flex flex-col justify-between bg-background p-10 md:p-12"
+            className="reveal flex min-h-[16rem] flex-col justify-between bg-background p-10 md:p-12"
             style={{ transitionDelay: `${i * 120}ms` }}
           >
-            <p className="font-serif text-xl leading-snug text-forest italic md:text-[1.45rem]">
-              “{d.texto}”
-            </p>
+            {d.texto ? (
+              <p className="font-serif text-lg leading-snug text-forest italic md:text-[1.3rem]">
+                “{d.texto}”
+              </p>
+            ) : (
+              // PLACEHOLDER — depoimento a ser inserido pela cliente
+              <p className="tracking-brand text-[0.6rem] text-muted-foreground/70">
+                Depoimento em breve
+              </p>
+            )}
             <footer className="mt-10">
               <p className="text-sm text-forest">{d.nome}</p>
               <p className="mt-1 text-xs text-muted-foreground">{d.meta}</p>
             </footer>
           </blockquote>
         ))}
-        {/* Espaço preparado para novos depoimentos: basta adicionar itens em DEPOIMENTOS */}
       </div>
     </Section>
   );
@@ -826,10 +794,19 @@ function Faq() {
         <div className="reveal">
           <Eyebrow>Perguntas frequentes</Eyebrow>
           <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.05] text-forest">
-            Antes de
+            A precisão que o
             <br />
-            <span className="italic">começarmos</span>
+            <span className="italic">seu sistema exige</span>
           </h2>
+          <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
+            Minha trajetória não foi construída apenas no campo clínico, mas na observação contínua
+            de como sistemas de alta percepção operam. Eu entendi que, para quem possui essa
+            sensibilidade, o acolhimento sem método é insuficiente. Foi a partir da minha própria
+            busca por estabilidade e da prática clínica que desenvolvi a Reestruturação Natural do
+            Ser. Não trabalho com suposições; trabalho com o mapeamento de falhas estruturais no
+            Canal Vital. Minha função aqui não é ser sua terapeuta eterna, mas a engenheira que vai
+            te entregar o manual de operação do seu próprio sistema.
+          </p>
         </div>
 
         <div className="border-t border-border">
@@ -888,12 +865,13 @@ function Garantia() {
           <path d="M24 32l6 6 12-13" />
         </svg>
         <h2 className="mt-10 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.08] text-forest">
-          Compromisso com a sua clareza.
+          Compromisso com a sua clareza
         </h2>
         <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
-          Se, ao final da Consulta Diagnóstico, você não sentir que identificamos a raiz do seu
-          descompasso e que o caminho da sua reestruturação está claro, devolvo integralmente o
-          valor investido.
+          A Consulta Diagnóstico é o primeiro passo para o seu comando. Se, ao final do nosso
+          mapeamento, você não sentir que identificamos a raiz do seu descompasso e que o caminho
+          para a sua reestruturação está claro, eu devolvo integralmente o valor investido na
+          consulta. Você tem total segurança para entender como o seu sistema funciona, sem riscos.
         </p>
       </div>
     </Section>
@@ -907,11 +885,12 @@ function CtaFinal() {
     <section className="relative overflow-hidden bg-forest-deep px-6 py-40 text-pearl md:px-12 md:py-56">
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-4xl text-center">
-        <p className="reveal font-serif text-[clamp(2rem,6vw,4.4rem)] leading-[1.1] text-pearl text-balance">
-          A sua sensibilidade nunca foi um defeito.
+        <p className="reveal font-serif text-[clamp(1.8rem,5vw,3.6rem)] leading-[1.12] text-pearl text-balance">
+          A sua sensibilidade não é um defeito de fabricação. É um sistema de alta precisão que, até
+          hoje, operou sem filtro.
         </p>
-        <p className="reveal mt-6 font-serif text-[clamp(2rem,6vw,4.4rem)] leading-[1.1] text-gold-soft italic text-balance">
-          Ela apenas esperava uma direção.
+        <p className="reveal mt-6 font-serif text-[clamp(1.8rem,5vw,3.6rem)] leading-[1.12] text-gold-soft italic text-balance">
+          Está na hora de assumir o comando da sua estrutura.
         </p>
         <div className="reveal mt-16">
           <Cta tone="light" />
@@ -930,6 +909,25 @@ function Footer() {
         <div>
           <p className="font-serif text-lg tracking-[0.18em] text-pearl">LEANDRA ESTRELAH</p>
           <p className="mt-2 text-xs">Reestruturação Natural do Ser · Atendimento online</p>
+          <div className="mt-4 flex flex-wrap gap-5 text-xs">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              data-cta="footer-whatsapp"
+              className="transition-colors hover:text-gold"
+            >
+              WhatsApp · +55 98 8830-0203
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-gold"
+            >
+              @leandraestrelahterapeuta
+            </a>
+          </div>
         </div>
         <p className="text-xs">
           © {new Date().getFullYear()} Leandra Estrelah. Todos os direitos reservados.
