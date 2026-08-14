@@ -610,32 +610,29 @@ function SobreLeandra() {
         </div>
         <div className="flex items-center px-6 py-24 md:px-16 lg:px-20">
           <div className="reveal max-w-lg">
-            <Eyebrow>Sobre Leandra</Eyebrow>
-            <h2 className="mt-8 font-serif text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.05] text-forest">
-              A precisão que o
+            <Eyebrow>Presença</Eyebrow>
+            <h2 className="mt-8 font-serif text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] text-forest">
+              Porque eu mapeio e
               <br />
-              <span className="italic">seu sistema exige</span>
+              <span className="italic">reestruturo o seu sistema</span>
             </h2>
             <div className="mt-10 space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
               <p>
-                Sou terapeuta especializada na reestruturação de sistemas de alta percepção — e eu
-                mesma sei o que é sentir o mundo na pele de uma forma intensa demais, pois também
-                possuo altas percepções e um cérebro neurodivergente.
-              </p>
-              <p>
-                Minha trajetória não foi construída apenas no campo clínico, mas na observação
-                técnica de como sistemas de alta percepção operam sob sobrecarga. Entendi, na
+                A minha trajetória não foi construída apenas no campo clínico, mas na observação
+                técnica de como sistemas de alta percepção operam sob sobrecarga. Eu entendi, na
                 prática, que o acolhimento genérico é insuficiente para quem possui uma constituição
                 de alta precisão.
               </p>
               <p>
-                Não trabalho com suposições ou narrativas infinitas; trabalho com o mapeamento de
-                falhas estruturais no seu Canal Vital. A precisão que o seu diagnóstico exige vem da
-                minha capacidade de isolar o que é ruído do ambiente do que é a sua potência real.
+                Foi a partir da minha própria busca por estabilidade e da prática clínica que
+                desenvolvi a Reestruturação Natural do Ser. Não trabalho com suposições ou
+                narrativas infinitas; trabalho com o mapeamento de falhas estruturais no seu Canal
+                Vital. A precisão que o seu diagnóstico exige vem da minha capacidade de isolar o
+                que é ruído ambiente do que é a sua potência real.
               </p>
               <p className="border-l border-gold/40 pl-6 font-serif text-xl leading-snug text-forest italic md:text-2xl">
-                Minha função não é ser sua terapeuta eterna, mas a engenheira que vai te entregar o
-                manual de operação do seu próprio sistema.
+                Minha função aqui não é ser sua terapeuta eterna, mas a engenheira que vai te
+                entregar o manual de operação do seu próprio sistema.
               </p>
             </div>
           </div>
@@ -646,15 +643,24 @@ function SobreLeandra() {
       <div className="grid items-stretch lg:grid-cols-2">
         <div className="order-2 flex items-center px-6 py-24 md:px-16 lg:order-1 lg:px-20">
           <div className="reveal max-w-lg space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
-            <Eyebrow>Presença</Eyebrow>
+            <Eyebrow>Sobre Leandra Estrelah</Eyebrow>
             <p>
-              Desenvolvi o método da Reestruturação Natural do Ser ao observar que o sofrimento de
-              pessoas sensíveis não era causado por desequilíbrios mentais, mas pela ausência de uma
-              estrutura lógica de filtragem do mundo externo.
+              Sou terapeuta especializada na reestruturação de sistemas de alta percepção, e eu
+              mesma, sei o que é sentir o mundo na pele, de uma forma intensa demais, pois também
+              possuo altas percepções e um cérebro neurodivergente.
+            </p>
+            <p>
+              Desenvolvi o método da Reestruturação Natural do Ser após anos de prática clínica, ao
+              observar que o sofrimento de pessoas sensíveis não era causado por desequilíbrios
+              mentais, mas pela ausência de uma estrutura lógica de filtragem do mundo externo.
             </p>
             <p>
               Meu trabalho é aplicar a engenharia necessária para que a sua sensibilidade deixe de
               ser um fardo e passe a ser a sua maior ferramenta de comando e presença no mundo.
+            </p>
+            <p className="border-l border-gold/40 pl-6 font-serif text-xl leading-snug text-forest italic md:text-2xl">
+              A sua sensibilidade não é um defeito de fabricação. É um sistema de alta precisão que,
+              até hoje, operou sem filtro. Está na hora de assumir o comando da sua estrutura.
             </p>
           </div>
         </div>
@@ -709,29 +715,14 @@ function SobreLeandra() {
 function ParaQuem() {
   return (
     <Section id="para-quem" className="bg-forest text-pearl">
-      <div className="reveal max-w-2xl">
+      <div className="reveal max-w-3xl">
         <Eyebrow>Para quem é</Eyebrow>
-        <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-pearl">
-          Feito para poucos.
-          <br />
-          <span className="italic text-gold-soft">Reconhecido por quem sente.</span>
-        </h2>
-      </div>
-
-      <div className="mt-20 grid gap-px border border-pearl/15 bg-pearl/15 md:grid-cols-3">
-        {PARA_QUEM.map((p, i) => (
-          <article
-            key={p.t}
-            className="reveal bg-forest p-10 md:p-12"
-            style={{ transitionDelay: `${i * 120}ms` }}
-          >
-            <span className="font-serif text-xs italic text-gold">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3 className="mt-6 font-serif text-2xl text-pearl md:text-[1.8rem]">{p.t}</h3>
-            <p className="mt-5 text-sm leading-relaxed text-pearl/70">{p.d}</p>
-          </article>
-        ))}
+        <p className="mt-10 font-serif text-[clamp(1.7rem,4vw,2.8rem)] leading-[1.2] text-pearl text-balance">
+          Este processo é para pessoas de{" "}
+          <span className="italic text-gold-soft">Alta Percepção</span> que buscam resultados
+          concretos, valorizam a sobriedade técnica e estão prontas para deixar de ser esponja do
+          ambiente para se tornarem guardiãs da própria potência.
+        </p>
       </div>
     </Section>
   );
