@@ -93,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Um espaço digital elegante para mulheres sensíveis que buscam clareza, calma e transformação.",
+          "Mapeamento e calibragem para pessoas com Alta Percepção. Não é terapia convencional.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
