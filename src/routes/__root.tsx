@@ -119,10 +119,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: "Terapia Online",
+          name: "Leandra Estrelah · Reestruturação Natural do Ser",
           description:
-            "Psicoterapia online para mulheres de alta percepção e sensibilidade.",
+            "Reestruturação Natural do Ser: mapeamento e calibragem para pessoas com Alta Percepção.",
           areaServed: "BR",
+          sameAs: ["https://www.instagram.com/leandraestrelahterapeuta/"],
+          telephone: "+55 98 8830-0203",
         }),
       },
       // Placeholders: GA4, GTM, Meta Pixel, Google Ads conversion.
