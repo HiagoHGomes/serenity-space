@@ -17,17 +17,20 @@ export const Route = createFileRoute("/")({
   component: Page,
   head: () => ({
     meta: [
-      { title: "Leandra Estrelah · Da exaustão à potência" },
+      { title: "Reestruturação Natural do Ser · Leandra Estrelah" },
       {
         name: "description",
         content:
-          "Reestruturação Natural do Ser: mapeamento e calibragem do Canal Vital para pessoas com Alta Percepção. Consulta Diagnóstico com Leandra Estrelah.",
+          "Mapeamento e Calibragem para pessoas com Alta Percepção. Engenharia de precisão para organizar o seu Canal Vital e retomar o comando da sua potência.",
       },
-      { property: "og:title", content: "Leandra Estrelah · Da exaustão à potência" },
+      {
+        property: "og:title",
+        content: "Reestruturação Natural do Ser · Leandra Estrelah",
+      },
       {
         property: "og:description",
         content:
-          "Reestruturação Natural do Ser para pessoas com Alta Percepção. Da exaustão à potência.",
+          "Mapeamento e Calibragem para pessoas com Alta Percepção. Não é terapia convencional.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

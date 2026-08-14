@@ -79,14 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Leandra Estrelah · Terapeuta — Uma jornada de acolhimento e alta percepção" },
+      { title: "Leandra Estrelah · Reestruturação Natural do Ser" },
       {
         name: "description",
         content:
-          "Atendimento psicoterapêutico online com Leandra Estrelah, terapeuta para mulheres de alta percepção. Um espaço seguro para reencontrar sua calma, clareza e força.",
+          "Reestruturação Natural do Ser: mapeamento e calibragem para pessoas com Alta Percepção. Atendimento online com Leandra Estrelah.",
       },
       { name: "author", content: "Leandra Estrelah" },
-      { property: "og:title", content: "Leandra Estrelah · Terapeuta — Uma jornada de acolhimento" },
+      { property: "og:title", content: "Leandra Estrelah · Reestruturação Natural do Ser" },
       { property: "og:image", content: shareImageUrl },
       { property: "og:image:type", content: "image/png" },
       { property: "og:image:alt", content: "Leandra Estrelah" },
