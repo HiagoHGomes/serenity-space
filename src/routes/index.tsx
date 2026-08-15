@@ -158,10 +158,12 @@ const SINTOMAS = [
   "Alta carga emocional que te sufoca",
   "Ausência de realização pessoal, procrastinação crônica e desvalorização pessoal - insegurança e baixa autoestima",
   "Sobrepeso e Fobia social",
+  "Depressão profunda, ansiedade generalizada, dores físicas constantes, ideação suicida, dependência de remédios de uso contínuo, abuso de drogas e alcoolismo. "
+
 ];
 
 const SINTOMAS_CRONICOS =
-  "E em casos crônicos: depressão profunda, ansiedade generalizada, dores físicas constantes, ideação suicida, dependência de remédios de uso contínuo, abuso de drogas e alcoolismo.";
+  "";
 
 const PILARES = [
   { n: "01", t: "Limpeza do seu canal vital", d: "Desobstrução." },
@@ -192,10 +194,10 @@ const DEPOIMENTOS: { nome: string; meta: string; texto: string }[] = [
     nome: "Chris Lima",
     meta: "28 anos · Imperatriz — MA",
     texto:
-      "Isso ajuda muita gente não só a se compreender, mas sobre a própria sanidade. Se não fosse pela senhora eu teria ficado louco só por achar que estava ficando. O espiritual é muito desconsiderado pelas pessoas. Quem sente se falar com algum profissional 95% vão dizer que a pessoa é esquizofrenica ou derivados. E a falta de alguém que já passou por algo parecido vai fazer a pessoa se sentir a mais solitária do mundo.",
+      'E eu devo parte de ta vivo (não só de corpo, mas de alma e mente) a pessoa que você é. Então MUITO OBRIGADO! E também "não obrigado" kkkk. Brincadeira. É só uma paret do meu passado que tenta me iludir para eu achar que ter a alma aprisionada, mas "confortável?!" (O caramba que era confortável! Mas as vezes essa parte quer que eu volte a estar preso) A luz da liberdade assusta, porquê depois das coisas que me ensinou eu percebi que podia ser livre, que tinha muito mais em mim e na vida. Conto com você e comigo mesmo para continuar aprendendo o quão a vida é linda quando lhamos com amor.',
   },
-  { nome: "Anna Duailibe", meta: "40 anos · São Luís — MA", texto: "" },
-  { nome: "Pedro Oliveira", meta: "38 anos · São Paulo — SP", texto: "" },
+  { nome: "Anna Duailibe", meta: "40 anos · São Luís — MA", texto: "Queria dexar aqui registrado que esotu em tratamento com a Leandra (um tratamento que dura 3 meses) e tem sido um grande divisor de águas na minha vida, eu venho de um histórico de mediunidade aflorada e descontrolada, na qual me causou grande desequilibrios durante toda a vida. O tratamento com a Leandra é completo, físico, emocional e energético (como ela mesma disse). Sentia dores fortes e já sinto leveza no meu corpo e principalmente na minha alma. Obrigada por tudo, Leandra.!" },
+  { nome: "Pedro Oliveira", meta: "38 anos · São Paulo — SP", texto: "Isso ajuda muita gente não só a se compreender, mas sobre a própria sanidade. Se não fosse pela senhora eu terai ficado louco só por achar que estava ficando. O espiritual é muito desonsiderado pelas pessoas. Quem sente se falar com algum profissional 95% vão dizer que é a pessoa esquizofrenica ou derivados. E a falta de alguém que já passou por algo parecido vai fazer a pessoa se sentir a mais solitária do mundo." },
 ];
 
 const FAQ = [
@@ -405,7 +407,7 @@ function Impacto() {
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-4xl text-center">
         <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance">
-          O seu sistema não esta quebrado ele so esta funcionando{" "}
+          O seu sistema não está quebrado ele só está funcionando{" "}
           <span className="italic text-gold">sem filtro.</span>
         </p>
         <span className="reveal mx-auto mt-16 block h-16 w-px bg-gold/40" />
@@ -427,7 +429,7 @@ function Descompasso() {
     <Section id="descompasso" className="bg-forest text-pearl">
       <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
         <div className="reveal">
-          <Eyebrow>O nome disso</Eyebrow>
+          <Eyebrow> </Eyebrow>
           <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.6rem)] leading-[1.05] text-pearl">
             Mas o que é o
             <br />
@@ -505,7 +507,8 @@ function Metodo() {
         </p>
         <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
           A Reestruturação Natural do Ser é um processo cíclico que se inicia com 10 sessões
-          estruturadas, e foi desenhado para quem busca autonomia e não dependência.
+          estruturadas, e foi desenhado para quem busca autonomia e não dependência. <br />
+          <strong>Pilares:</strong> Limpeza do seu canal vital  (desobstrução), Calibração (instalação de filtros) e Consolidação (comando do seu sistema).
         </p>
       </div>
 
@@ -538,7 +541,7 @@ function Jornada() {
   return (
     <Section id="jornada" className="bg-card">
       <div className="reveal max-w-2xl">
-        <Eyebrow>O caminho</Eyebrow>
+        <Eyebrow> </Eyebrow>
         <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
           A jornada em
           <br />
@@ -613,7 +616,7 @@ function SobreLeandra() {
         </div>
         <div className="flex items-center px-6 py-24 md:px-16 lg:px-20">
           <div className="reveal max-w-lg">
-            <Eyebrow>Presença</Eyebrow>
+            <Eyebrow> </Eyebrow>
             <h2 className="mt-8 font-serif text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] text-forest">
               Porque eu mapeio e
               <br />
