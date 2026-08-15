@@ -374,11 +374,11 @@ function Identificacao() {
         </p>
       </div>
 
-      <div className="mt-20 grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-20 grid border border-border md:grid-cols-2 lg:grid-cols-3">
         {SINTOMAS.map((s, i) => (
           <article
             key={s}
-            className="reveal group relative bg-background p-10 transition-colors duration-700 hover:bg-card md:p-12"
+            className="reveal group relative border-b border-r border-border bg-background p-10 transition-colors duration-700 hover:bg-card last:border-b-0 md:[&:nth-child(2n)]:border-r-0 md:[&:nth-last-child(-n+1)]:border-b-0 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-last-child(-n+3)]:border-b-0 md:p-12"
             style={{ transitionDelay: `${(i % 3) * 90}ms` }}
           >
             <span className="font-serif text-xs italic text-gold/70">
@@ -758,11 +758,11 @@ function Depoimentos() {
         </figcaption>
       </figure>
 
-      <div className="mt-24 grid gap-px border border-border bg-border md:grid-cols-3">
+      <div className="mt-24 grid border border-border md:grid-cols-3">
         {DEPOIMENTOS.map((d, i) => (
           <blockquote
             key={d.nome}
-            className="reveal flex min-h-[16rem] flex-col justify-between bg-background p-10 md:p-12"
+            className="reveal flex min-h-[16rem] flex-col justify-between border-b border-r border-border bg-background p-10 last:border-b-0 md:[&:nth-child(3n)]:border-r-0 md:[&:nth-last-child(-n+3)]:border-b-0 md:p-12"
             style={{ transitionDelay: `${i * 120}ms` }}
           >
             {d.texto ? (
