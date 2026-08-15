@@ -106,6 +106,9 @@
 @utility shadow-editorial {
   box-shadow: var(--shadow-editorial);
 }
+@utility border-editorial {
+  border-color: color-mix(in oklab, var(--forest) 22%, transparent);
+}
 @utility tracking-brand {
   letter-spacing: 0.28em;
   text-transform: uppercase;
