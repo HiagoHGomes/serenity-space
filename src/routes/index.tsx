@@ -370,7 +370,7 @@ function Identificacao() {
           exausta de tentar se encaixar em estruturas que não foram feitas para você?
         </h2>
         <p className="mt-10 text-sm leading-relaxed text-muted-foreground">
-          Você reconhece dois ou mais desses sintomas?
+          Se sim, você reconhece dois ou mais desses sintomas?
         </p>
       </div>
 
