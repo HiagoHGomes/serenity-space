@@ -385,7 +385,7 @@ function Identificacao() {
         </p>
       </div>
 
-      <ul className="mt-20 flex flex-col border-t border-editorial">
+      <ul className="mt-6 flex flex-col border-t border-editorial">
         {SINTOMAS.map((s, i) => (
           <li
             key={s}
