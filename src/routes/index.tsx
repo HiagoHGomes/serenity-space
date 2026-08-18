@@ -189,16 +189,27 @@ const JORNADA = [
   },
 ];
 
-const DEPOIMENTOS: { nome: string; meta: string; texto: string }[] = [
+const DEPOIMENTOS: { nome: string; meta: string; print: string; alt: string }[] = [
   {
     nome: "Chris Lima",
     meta: "28 anos · Imperatriz — MA",
-    texto:
-      'E eu devo parte de ta vivo (não só de corpo, mas de alma e mente) a pessoa que você é. Então MUITO OBRIGADO! E também "não obrigado" kkkk. Brincadeira. É só uma paret do meu passado que tenta me iludir para eu achar que ter a alma aprisionada, mas "confortável?!" (O caramba que era confortável! Mas as vezes essa parte quer que eu volte a estar preso) A luz da liberdade assusta, porquê depois das coisas que me ensinou eu percebi que podia ser livre, que tinha muito mais em mim e na vida. Conto com você e comigo mesmo para continuar aprendendo o quão a vida é linda quando lhamos com amor.',
+    print: "/media/depoimento-chris.jpg",
+    alt: "Print de mensagem de Chris Lima agradecendo o tratamento com Leandra Estrelah",
   },
-  { nome: "Anna Duailibe", meta: "40 anos · São Luís — MA", texto: "Queria dexar aqui registrado que esotu em tratamento com a Leandra (um tratamento que dura 3 meses) e tem sido um grande divisor de águas na minha vida, eu venho de um histórico de mediunidade aflorada e descontrolada, na qual me causou grande desequilibrios durante toda a vida. O tratamento com a Leandra é completo, físico, emocional e energético (como ela mesma disse). Sentia dores fortes e já sinto leveza no meu corpo e principalmente na minha alma. Obrigada por tudo, Leandra.!" },
-  { nome: "Pedro Oliveira", meta: "38 anos · São Paulo — SP", texto: "Isso ajuda muita gente não só a se compreender, mas sobre a própria sanidade. Se não fosse pela senhora eu terai ficado louco só por achar que estava ficando. O espiritual é muito desonsiderado pelas pessoas. Quem sente se falar com algum profissional 95% vão dizer que é a pessoa esquizofrenica ou derivados. E a falta de alguém que já passou por algo parecido vai fazer a pessoa se sentir a mais solitária do mundo." },
+  {
+    nome: "Anna Duailibe",
+    meta: "40 anos · São Luís — MA",
+    print: "/media/depoimento-anna.jpg",
+    alt: "Print de mensagem de Anna Duailibe relatando alívio após o tratamento",
+  },
+  {
+    nome: "Pedro Oliveira",
+    meta: "38 anos · São Paulo — SP",
+    print: "/media/depoimento-pedro.jpg",
+    alt: "Print de mensagem de Pedro Oliveira sobre compreensão e sanidade",
+  },
 ];
+
 
 const FAQ = [
   {
@@ -374,23 +385,23 @@ function Identificacao() {
         </p>
       </div>
 
-      <div className="mt-20 grid border border-editorial md:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-20 flex flex-col border-t border-editorial">
         {SINTOMAS.map((s, i) => (
-          <article
+          <li
             key={s}
-            className="reveal group relative border-b border-r border-editorial bg-background p-10 transition-colors duration-700 hover:bg-card last:border-b-0 md:[&:nth-child(2n)]:border-r-0 md:[&:nth-last-child(-n+1)]:border-b-0 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-last-child(-n+3)]:border-b-0 md:p-12"
-            style={{ transitionDelay: `${(i % 3) * 90}ms` }}
+            className="reveal group grid grid-cols-[auto_minmax(0,1fr)] items-start gap-6 border-b border-editorial bg-background px-1 py-8 transition-colors duration-700 hover:bg-card md:gap-10 md:px-6 md:py-10"
+            style={{ transitionDelay: `${Math.min(i, 4) * 70}ms` }}
           >
-            <span className="font-serif text-xs italic text-gold/70">
+            <span className="shrink-0 pt-1 font-serif text-sm font-light italic text-gold/70 tabular-nums md:text-base">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <p className="mt-6 font-serif text-xl leading-snug text-forest break-words md:text-[1.55rem]">
+            <p className="min-w-0 font-serif text-lg leading-snug text-forest break-words md:text-[1.5rem]">
               {s}
             </p>
-            <span className="mt-8 block h-px w-0 bg-gold transition-all duration-1000 group-hover:w-12" />
-          </article>
+          </li>
         ))}
-      </div>
+      </ul>
+
 
       <p className="reveal mt-16 max-w-3xl border-l border-gold/40 pl-6 text-sm leading-relaxed text-muted-foreground">
         {SINTOMAS_CRONICOS}
@@ -758,30 +769,29 @@ function Depoimentos() {
         </figcaption>
       </figure>
 
-      <div className="mt-24 grid border border-editorial md:grid-cols-3">
+      <div className="mt-24 grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
         {DEPOIMENTOS.map((d, i) => (
-          <blockquote
+          <figure
             key={d.nome}
-            className="reveal flex min-h-[16rem] flex-col justify-between border-b border-r border-editorial bg-background p-10 last:border-b-0 md:[&:nth-child(3n)]:border-r-0 md:[&:nth-last-child(-n+3)]:border-b-0 md:p-12"
+            className="reveal flex flex-col rounded-sm border border-editorial bg-card p-4 shadow-editorial md:p-5"
             style={{ transitionDelay: `${i * 120}ms` }}
           >
-            {d.texto ? (
-              <p className="font-serif text-lg leading-snug text-forest italic md:text-[1.3rem]">
-                “{d.texto}”
-              </p>
-            ) : (
-              // PLACEHOLDER — depoimento a ser inserido pela cliente
-              <p className="tracking-brand text-[0.6rem] text-muted-foreground/70">
-                Depoimento em breve
-              </p>
-            )}
-            <footer className="mt-10">
+            <div className="overflow-hidden rounded-sm border border-editorial bg-background">
+              <img
+                src={d.print}
+                alt={d.alt}
+                loading="lazy"
+                className="h-auto w-full object-contain"
+              />
+            </div>
+            <figcaption className="mt-6">
               <p className="text-sm text-forest">{d.nome}</p>
               <p className="mt-1 text-xs text-muted-foreground">{d.meta}</p>
-            </footer>
-          </blockquote>
+            </figcaption>
+          </figure>
         ))}
       </div>
+
     </Section>
   );
 }
