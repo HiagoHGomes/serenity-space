@@ -773,10 +773,10 @@ function Depoimentos() {
         {DEPOIMENTOS.map((d, i) => (
           <figure
             key={d.nome}
-            className="reveal flex flex-col rounded-sm border border-editorial bg-card p-4 shadow-editorial md:p-5"
+            className="reveal flex flex-col rounded-xl border border-editorial bg-card p-4 shadow-editorial md:p-5"
             style={{ transitionDelay: `${i * 120}ms` }}
           >
-            <div className="overflow-hidden rounded-sm border border-editorial bg-background">
+            <div className="overflow-hidden rounded-lg border border-editorial bg-background">
               <img
                 src={d.print}
                 alt={d.alt}
