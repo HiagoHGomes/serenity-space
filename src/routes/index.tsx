@@ -189,16 +189,27 @@ const JORNADA = [
   },
 ];
 
-const DEPOIMENTOS: { nome: string; meta: string; texto: string }[] = [
+const DEPOIMENTOS: { nome: string; meta: string; print: string; alt: string }[] = [
   {
     nome: "Chris Lima",
     meta: "28 anos · Imperatriz — MA",
-    texto:
-      'E eu devo parte de ta vivo (não só de corpo, mas de alma e mente) a pessoa que você é. Então MUITO OBRIGADO! E também "não obrigado" kkkk. Brincadeira. É só uma paret do meu passado que tenta me iludir para eu achar que ter a alma aprisionada, mas "confortável?!" (O caramba que era confortável! Mas as vezes essa parte quer que eu volte a estar preso) A luz da liberdade assusta, porquê depois das coisas que me ensinou eu percebi que podia ser livre, que tinha muito mais em mim e na vida. Conto com você e comigo mesmo para continuar aprendendo o quão a vida é linda quando lhamos com amor.',
+    print: "/media/depoimento-chris.jpg",
+    alt: "Print de mensagem de Chris Lima agradecendo o tratamento com Leandra Estrelah",
   },
-  { nome: "Anna Duailibe", meta: "40 anos · São Luís — MA", texto: "Queria dexar aqui registrado que esotu em tratamento com a Leandra (um tratamento que dura 3 meses) e tem sido um grande divisor de águas na minha vida, eu venho de um histórico de mediunidade aflorada e descontrolada, na qual me causou grande desequilibrios durante toda a vida. O tratamento com a Leandra é completo, físico, emocional e energético (como ela mesma disse). Sentia dores fortes e já sinto leveza no meu corpo e principalmente na minha alma. Obrigada por tudo, Leandra.!" },
-  { nome: "Pedro Oliveira", meta: "38 anos · São Paulo — SP", texto: "Isso ajuda muita gente não só a se compreender, mas sobre a própria sanidade. Se não fosse pela senhora eu terai ficado louco só por achar que estava ficando. O espiritual é muito desonsiderado pelas pessoas. Quem sente se falar com algum profissional 95% vão dizer que é a pessoa esquizofrenica ou derivados. E a falta de alguém que já passou por algo parecido vai fazer a pessoa se sentir a mais solitária do mundo." },
+  {
+    nome: "Anna Duailibe",
+    meta: "40 anos · São Luís — MA",
+    print: "/media/depoimento-anna.jpg",
+    alt: "Print de mensagem de Anna Duailibe relatando alívio após o tratamento",
+  },
+  {
+    nome: "Pedro Oliveira",
+    meta: "38 anos · São Paulo — SP",
+    print: "/media/depoimento-pedro.jpg",
+    alt: "Print de mensagem de Pedro Oliveira sobre compreensão e sanidade",
+  },
 ];
+
 
 const FAQ = [
   {
