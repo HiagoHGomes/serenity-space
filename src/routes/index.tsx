@@ -769,30 +769,29 @@ function Depoimentos() {
         </figcaption>
       </figure>
 
-      <div className="mt-24 grid border border-editorial md:grid-cols-3">
+      <div className="mt-24 grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
         {DEPOIMENTOS.map((d, i) => (
-          <blockquote
+          <figure
             key={d.nome}
-            className="reveal flex min-h-[16rem] flex-col justify-between border-b border-r border-editorial bg-background p-10 last:border-b-0 md:[&:nth-child(3n)]:border-r-0 md:[&:nth-last-child(-n+3)]:border-b-0 md:p-12"
+            className="reveal flex flex-col rounded-sm border border-editorial bg-card p-4 shadow-editorial md:p-5"
             style={{ transitionDelay: `${i * 120}ms` }}
           >
-            {d.texto ? (
-              <p className="font-serif text-lg leading-snug text-forest italic md:text-[1.3rem]">
-                “{d.texto}”
-              </p>
-            ) : (
-              // PLACEHOLDER — depoimento a ser inserido pela cliente
-              <p className="tracking-brand text-[0.6rem] text-muted-foreground/70">
-                Depoimento em breve
-              </p>
-            )}
-            <footer className="mt-10">
+            <div className="overflow-hidden rounded-sm border border-editorial bg-background">
+              <img
+                src={d.print}
+                alt={d.alt}
+                loading="lazy"
+                className="h-auto w-full object-contain"
+              />
+            </div>
+            <figcaption className="mt-6">
               <p className="text-sm text-forest">{d.nome}</p>
               <p className="mt-1 text-xs text-muted-foreground">{d.meta}</p>
-            </footer>
-          </blockquote>
+            </figcaption>
+          </figure>
         ))}
       </div>
+
     </Section>
   );
 }
