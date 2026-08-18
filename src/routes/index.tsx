@@ -374,23 +374,23 @@ function Identificacao() {
         </p>
       </div>
 
-      <div className="mt-20 grid border border-editorial md:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-20 flex flex-col border-t border-editorial">
         {SINTOMAS.map((s, i) => (
-          <article
+          <li
             key={s}
-            className="reveal group relative border-b border-r border-editorial bg-background p-10 transition-colors duration-700 hover:bg-card last:border-b-0 md:[&:nth-child(2n)]:border-r-0 md:[&:nth-last-child(-n+1)]:border-b-0 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-last-child(-n+3)]:border-b-0 md:p-12"
-            style={{ transitionDelay: `${(i % 3) * 90}ms` }}
+            className="reveal group grid grid-cols-[auto_minmax(0,1fr)] items-start gap-6 border-b border-editorial bg-background px-1 py-8 transition-colors duration-700 hover:bg-card md:gap-10 md:px-6 md:py-10"
+            style={{ transitionDelay: `${Math.min(i, 4) * 70}ms` }}
           >
-            <span className="font-serif text-xs italic text-gold/70">
+            <span className="shrink-0 pt-1 font-serif text-sm font-light italic text-gold/70 tabular-nums md:text-base">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <p className="mt-6 font-serif text-xl leading-snug text-forest break-words md:text-[1.55rem]">
+            <p className="min-w-0 font-serif text-lg leading-snug text-forest break-words md:text-[1.5rem]">
               {s}
             </p>
-            <span className="mt-8 block h-px w-0 bg-gold transition-all duration-1000 group-hover:w-12" />
-          </article>
+          </li>
         ))}
-      </div>
+      </ul>
+
 
       <p className="reveal mt-16 max-w-3xl border-l border-gold/40 pl-6 text-sm leading-relaxed text-muted-foreground">
         {SINTOMAS_CRONICOS}
