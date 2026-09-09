@@ -156,10 +156,13 @@ const SINTOMAS = [
   "Incompreensão sobre o real sentido da vida",
   "Sobrecarga sensorial diante de ambientes ou pessoas.",
   "Alta carga emocional que te sufoca",
-  "Ausência de realização pessoal, procrastinação crônica e desvalorização pessoal - insegurança e baixa autoestima",
-  "Sobrepeso e Fobia social",
-  "Depressão profunda, ansiedade generalizada, dores físicas constantes, ideação suicida, dependência de remédios de uso contínuo, abuso de drogas e alcoolismo. "
-
+  "Ausência de realização pessoal e procrastinação crônica",
+  "Desvalorização pessoal, insegurança e baixa autoestima",
+  "Sobrepeso",
+  "Fobia Social",
+  "Depressão profunda e ansiedade",
+  "Dores fisicas constantes e uso contínuo de remédios",
+  "E em casos mais graves: Abuso de drogas, alcoolismo e ideação suicida."
 ];
 
 const SINTOMAS_CRONICOS =
