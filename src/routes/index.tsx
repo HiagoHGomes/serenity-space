@@ -420,9 +420,9 @@ function Impacto() {
     <section className="relative bg-pearl px-6 py-40 md:px-12 md:py-56">
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-4xl text-center">
-        <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance">
-          O seu sistema não está quebrado ele só está funcionando{" "}
-          <span className="italic text-gold">sem filtro.</span>
+        <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance text-justify">
+          <span className="text-gold uppercase">Eu te afirmo:</span> o seu sistema não está quebrado ele apenas está funcionando{" "}
+          <span className="italic text-gold">sem filtro.</span> <br /><br /><span className="text-gold">Absorvendo</span> o ruído externo e reagindo ao mundo sem o devido contorno. <br /><br /><span className="text-gold">O cansaço,</span> a ansiedade e a sobrecarga que você sente não são falhas da sua estrutura, são o resultado de uma potência que perdeu o próprio eixo e continua operando sem proteção.
         </p>
         <span className="reveal mx-auto mt-16 block h-16 w-px bg-gold/40" />
         <p className="reveal mt-16 font-serif text-[clamp(1.8rem,4.6vw,3.2rem)] leading-[1.12] text-forest text-balance">
@@ -663,7 +663,7 @@ function SobreLeandra() {
       <div className="grid items-stretch lg:grid-cols-2">
         <div className="order-2 flex items-center px-6 py-24 md:px-16 lg:order-1 lg:px-20">
           <div className="reveal max-w-lg space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
-            <Eyebrow>Sobre Leandra Estrelah</Eyebrow>
+            <h2 className="mt-8 font-serif text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] text-forest">Quem é Leandra Estrelah?</h2>
             <p>
               Sou terapeuta especializada na reestruturação de sistemas de alta percepção, e eu
               mesma, sei o que é sentir o mundo na pele, de uma forma intensa demais, pois também
