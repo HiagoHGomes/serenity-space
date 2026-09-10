@@ -11,7 +11,7 @@ const WHATSAPP_URL =
 
 const INSTAGRAM_URL = "https://www.instagram.com/leandraestrelahterapeuta/";
 
-const CTA_LABEL = "Agendar minha Consulta Diagnóstico";
+const CTA_LABEL = "Agendar Consulta Diagnóstica - R$ 480";
 
 export const Route = createFileRoute("/")({
   component: Page,
@@ -245,12 +245,12 @@ function Page() {
       <Nav />
       <Hero />
       <Identificacao />
+      <ParaQuem />
       <Impacto />
       <Descompasso />
       <Metodo />
       <Jornada />
       <SobreLeandra />
-      <ParaQuem />
       <Depoimentos />
       <Faq />
       <Garantia />
@@ -317,21 +317,10 @@ function Nav() {
 /* ---------------------------------------------------------------------- hero */
 
 function Hero() {
-  const [y, setY] = useState(0);
-  useEffect(() => {
-    const onScroll = () => setY(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <section id="top" className="relative flex min-h-screen items-center overflow-hidden">
-      {/* PLACEHOLDER — vídeo de fundo. Substitua por <video src="..." autoPlay muted loop playsInline /> */}
       <div className="absolute inset-0">
-        <div
-          className="animate-drift absolute inset-0"
-          style={{ transform: `translateY(${y * 0.12}px)` }}
-        >
+        <div className="absolute inset-0">
           <img
             src={olharAsset.url}
             alt="Leandra Estrelah"
@@ -378,12 +367,14 @@ function Identificacao() {
   return (
     <Section id="identificacao" className="bg-background">
       <div className="reveal max-w-3xl">
-        <Eyebrow>O problema</Eyebrow>
+        <p className="font-serif text-[clamp(1.6rem,3.4vw,2.4rem)] leading-none tracking-[0.14em] text-gold uppercase">
+          O Problema
+        </p>
         <h2 className="mt-8 font-serif text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.12] text-forest text-balance">
           Você vive em estado de alerta constante, sente que absorve o ruído do ambiente e está
           exausta de tentar se encaixar em estruturas que não foram feitas para você?
         </h2>
-        <p className="mt-10 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-10 font-serif text-[clamp(1.4rem,3.2vw,2.2rem)] leading-snug text-forest">
           Se sim, você reconhece dois ou mais desses sintomas?
         </p>
       </div>
@@ -405,10 +396,9 @@ function Identificacao() {
         ))}
       </ul>
 
-
-      <p className="reveal mt-16 max-w-3xl border-l border-gold/40 pl-6 text-sm leading-relaxed text-muted-foreground">
-        {SINTOMAS_CRONICOS}
-      </p>
+      <div className="reveal mt-16">
+        <Cta />
+      </div>
     </Section>
   );
 }
@@ -521,8 +511,11 @@ function Metodo() {
         </p>
         <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
           A Reestruturação Natural do Ser é um processo cíclico que se inicia com 10 sessões
-          estruturadas, e foi desenhado para quem busca autonomia e não dependência. <br />
-          <strong>Pilares:</strong> Limpeza do seu canal vital  (desobstrução), Calibração (instalação de filtros) e Consolidação (comando do seu sistema).
+          estruturadas, e foi desenhado para quem busca autonomia e não dependência.
+        </p>
+        <p className="mt-10 border-l-2 border-gold bg-card px-6 py-6 font-serif text-[clamp(1.25rem,2.6vw,1.9rem)] leading-snug font-semibold text-forest">
+          <span className="text-gold">Pilares:</span> Limpeza do seu canal vital (desobstrução),
+          Calibração (instalação de filtros) e Consolidação (comando do seu sistema).
         </p>
       </div>
 
@@ -553,17 +546,17 @@ function Metodo() {
 
 function Jornada() {
   return (
-    <Section id="jornada" className="bg-card">
+    <section id="jornada" className="relative bg-card px-6 py-16 md:px-12 md:py-40">
+      <div className="mx-auto w-full max-w-6xl">
       <div className="reveal max-w-2xl">
-        <Eyebrow> </Eyebrow>
-        <h2 className="mt-8 font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
+        <h2 className="font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
           A jornada em
           <br />
           <span className="italic">três etapas.</span>
         </h2>
       </div>
 
-      <div className="mt-24 grid gap-16 md:grid-cols-3 md:gap-10">
+      <div className="mt-10 grid gap-10 md:mt-24 md:grid-cols-3 md:gap-10">
         {JORNADA.map((j, i) => (
           <div key={j.t} className="reveal relative" style={{ transitionDelay: `${i * 140}ms` }}>
             <svg
@@ -596,19 +589,24 @@ function Jornada() {
                 </>
               )}
             </svg>
-            <p className="mt-8 tracking-brand text-[0.55rem] text-gold">Etapa {i + 1}</p>
-            <h3 className="mt-4 font-serif text-3xl text-forest">{j.t}</h3>
+            <p className="mt-4 tracking-brand text-[0.55rem] text-gold md:mt-8">Etapa {i + 1}</p>
+            <h3 className="mt-3 font-serif text-2xl text-forest md:mt-4 md:text-3xl">{j.t}</h3>
             <p className="mt-2 text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
               {j.s}
             </p>
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{j.d}</p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:mt-6">{j.d}</p>
             {i < JORNADA.length - 1 && (
               <span className="absolute top-7 -right-5 hidden h-px w-10 bg-gold/30 md:block" />
             )}
           </div>
         ))}
       </div>
-    </Section>
+
+      <div className="reveal mt-12 md:mt-20">
+        <Cta />
+      </div>
+      </div>
+    </section>
   );
 }
 
@@ -761,9 +759,10 @@ function Depoimentos() {
         <div className="overflow-hidden border border-border bg-card">
           <video
             src={depoimentoAsset.url}
+            poster="/media/poster-depoimento.jpg"
             controls
             playsInline
-            preload="metadata"
+            preload="none"
             className="max-h-[80vh] w-full bg-forest-deep object-contain"
           />
         </div>
@@ -795,6 +794,9 @@ function Depoimentos() {
         ))}
       </div>
 
+      <div className="reveal mt-20">
+        <Cta />
+      </div>
     </Section>
   );
 }
