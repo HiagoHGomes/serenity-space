@@ -165,8 +165,6 @@ const SINTOMAS = [
   "E em casos mais graves: Abuso de drogas, alcoolismo e ideação suicida."
 ];
 
-const SINTOMAS_CRONICOS =
-  "";
 
 const PILARES = [
   { n: "01", t: "Limpeza do seu canal vital", d: "Desobstrução." },
