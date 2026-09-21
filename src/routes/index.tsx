@@ -102,19 +102,105 @@ function GoldCursor() {
   );
 }
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({
+  children,
+  colorClassName = "text-gold",
+}: {
+  children: React.ReactNode;
+  colorClassName?: string;
+}) {
+  return <p className={`tracking-brand text-[0.65rem] ${colorClassName}`}>{children}</p>;
+}
+
+function WhatsAppIcon({ className = "" }: { className?: string }) {
   return (
-    <p className="tracking-brand text-[0.65rem] text-gold">{children}</p>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      <path d="M12.04 2.13c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.15-1.35a9.87 9.87 0 004.89 1.25h.01c5.46 0 9.9-4.44 9.9-9.9s-4.45-9.87-9.91-9.87zm0 18.1h-.01a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.06.8.82-2.98-.2-.31a8.19 8.19 0 01-1.26-4.38c0-4.53 3.69-8.22 8.21-8.22a8.16 8.16 0 015.81 2.41 8.16 8.16 0 012.4 5.82c0 4.53-3.69 8.19-8.22 8.19zm4.5-6.15c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42-.14-.01-.31-.01-.48-.01a.92.92 0 00-.67.31c-.23.25-.87.85-.87 2.08 0 1.23.9 2.41 1.02 2.58.12.17 1.77 2.71 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.19.21-.58.21-1.08.14-1.19-.06-.11-.23-.17-.48-.29z" />
+    </svg>
+  );
+}
+
+function LeafIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="0.8"
+    >
+      <path d="M14 50C10 30 22 12 44 10c4 18-6 34-24 38-4 1-6 1-6 2z" />
+      <path d="M18 46C24 34 32 24 44 18" />
+    </svg>
+  );
+}
+
+function ApertureIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="0.8"
+    >
+      <circle cx="32" cy="32" r="14" />
+      <path d="M14 14v10M14 14h10" />
+      <path d="M50 14v10M50 14H40" />
+      <path d="M14 50v-10M14 50h10" />
+      <path d="M50 50v-10M50 50H40" />
+    </svg>
+  );
+}
+
+function PalmIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="0.8"
+    >
+      <path d="M20 34V16a3 3 0 0 1 6 0v14" />
+      <path d="M26 30V13a3 3 0 0 1 6 0v17" />
+      <path d="M32 30V15a3 3 0 0 1 6 0v17" />
+      <path d="M38 32V19a3 3 0 0 1 6 0v20c0 9-7 15-16 15-8 0-13-4-16-11l-5-11a3 3 0 0 1 5-3l6 8" />
+    </svg>
+  );
+}
+
+function PilarMini({
+  icon,
+  n,
+  t,
+  d,
+}: {
+  icon: React.ReactNode;
+  n: string;
+  t: string;
+  d: string;
+}) {
+  return (
+    <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+      {icon}
+      <p className="mt-5 tracking-brand text-[0.6rem] text-gold">{n}</p>
+      <h4 className="mt-2 font-serif text-xl text-forest">{t}</h4>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
+    </div>
   );
 }
 
 function Cta({ tone = "dark", className = "" }: { tone?: "dark" | "light"; className?: string }) {
   const base =
-    "group inline-flex items-center gap-4 border px-8 py-4 text-[0.7rem] tracking-brand transition-all duration-700";
+    "group inline-flex items-center gap-3 border px-8 py-4 text-[0.7rem] tracking-brand transition-all duration-700";
   const styles =
     tone === "dark"
-      ? "border-forest/25 text-forest hover:border-gold hover:bg-forest hover:text-pearl"
-      : "border-pearl/35 text-pearl hover:border-gold hover:bg-gold hover:text-forest-deep";
+      ? "border-forest bg-forest text-pearl hover:border-gold hover:bg-gold hover:text-forest-deep"
+      : "border-gold bg-gold text-forest-deep hover:border-pearl hover:bg-pearl hover:text-forest-deep";
   return (
     <a
       href={WHATSAPP_URL}
@@ -123,6 +209,7 @@ function Cta({ tone = "dark", className = "" }: { tone?: "dark" | "light"; class
       data-cta="consulta-diagnostico"
       className={`${base} ${styles} ${className}`}
     >
+      <WhatsAppIcon className="h-4 w-4 shrink-0" />
       {CTA_LABEL}
       <span className="inline-block transition-transform duration-700 group-hover:translate-x-1">
         →
@@ -167,14 +254,26 @@ const SINTOMAS = [
 
 
 const PILARES = [
-  { n: "01", t: "Limpeza do seu canal vital", d: "Desobstrução." },
-  { n: "02", t: "Calibração", d: "Instalação de filtros." },
-  { n: "03", t: "Consolidação", d: "Comando do seu sistema." },
+  {
+    n: "01",
+    t: "Limpeza do seu canal vital",
+    d: "Anos absorvendo ruídos, expectativas alheias e traumas não processados pesam sobre o seu sistema. Essa estagnação apaga a sua luz e consome o seu magnetismo. Aqui, nós desintoxicamos a sua estrutura camada por camada. É o momento de soltar o que não é seu, resgatar o espaço interno e permitir que a sua vitalidade volte a pulsar com frescor e leveza.",
+  },
+  {
+    n: "02",
+    t: "Calibração",
+    d: "Com o seu canal vital limpo, o seu corpo precisa aprender a se proteger sem se fechar. Sem contornos bem definidos, você continua à mercê da energia dos outros e isso esgota o seu brilho e a sua força. Nesta etapa, refinamos a sua filtragem sensorial: você aprende a impor limites elegantes e cirúrgicos, distinguindo o que te nutre do que te drena. Você passa a habitar o mundo com presença, e não com reatividade.",
+  },
+  {
+    n: "03",
+    t: "Consolidação",
+    d: "Transformação sem sustentação é apenas um estado passageiro. A consolidação fixa esse novo estado de presença e alinhamento como a sua nova natureza. O seu corpo internaliza a segurança, a postura e a soberania de quem governa a própria vida. Você deixa de buscar aprovação externa e passa a operar com autonomia, atraindo naturalmente os seus resultados a partir do seu centro de poder.",
+  },
 ];
 
 const JORNADA = [
   {
-    t: "Consulta Diagnóstico",
+    t: "Consulta Diagnóstica",
     s: "O ponto de entrada",
     d: "O primeiro passo é mapear o seu sistema. Nesta consulta, identificamos onde estão os gargalos do seu Canal Vital, olhamos cuidadosamente para a sua atual estrutura e o que ela precisa para retomar o funcionamento saudável.",
   },
@@ -221,7 +320,7 @@ const FAQ = [
     q: "Como sei se tenho Alta Percepção?",
     a: "Se você sente que absorve o ambiente como uma esponja, tem dificuldade em distinguir o que é seu do que é do outro, sofre de esgotamento crônico mesmo sem esforço físico e sente que o mundo é \u201cbarulhento demais\u201d, o seu sistema está operando em alta percepção, mas sem a estrutura necessária.",
   },
-  { q: "Quanto tempo dura a Consulta Diagnóstico?", a: "2 horas." },
+  { q: "Quanto tempo dura a Consulta Diagnóstica?", a: "2 horas." },
   {
     q: "Quanto tempo dura cada sessão?",
     a: "Cada sessão do ciclo tem duração de 80 minutos, focada exclusivamente na execução do protocolo de reestruturação. Nosso tempo é dedicado à precisão, não à conversa genérica.",
@@ -251,7 +350,6 @@ function Page() {
       <SobreLeandra />
       <Depoimentos />
       <Faq />
-      <Garantia />
       <CtaFinal />
       <Footer />
     </main>
@@ -298,13 +396,10 @@ function Nav() {
           target="_blank"
           rel="noreferrer"
           data-cta="nav"
-          className={`shrink-0 border px-5 py-3 text-[0.6rem] tracking-brand transition-all duration-700 ${
-            solid
-              ? "border-forest/25 text-forest hover:border-gold hover:text-gold"
-              : "border-pearl/35 text-pearl hover:border-gold hover:text-gold"
-          }`}
+          className="inline-flex shrink-0 items-center gap-2 border border-gold bg-gold px-5 py-3 text-[0.6rem] tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl"
         >
-          <span className="hidden sm:inline">Consulta Diagnóstico</span>
+          <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
+          <span className="hidden sm:inline">Consulta Diagnóstica</span>
           <span className="sm:hidden">Agendar</span>
         </a>
       </div>
@@ -332,14 +427,13 @@ function Hero() {
 
       <div className="relative mx-auto w-full max-w-6xl px-6 pt-32 pb-28 md:px-12">
         <div className="animate-veil max-w-3xl">
-          <Eyebrow>Leandra Estrelah</Eyebrow>
-          <h1 className="mt-8 font-serif text-[clamp(2rem,5.2vw,4.2rem)] leading-[1.06] text-pearl text-balance">
+          <h1 className="font-serif text-[clamp(2rem,5.2vw,4.2rem)] leading-[1.06] text-pearl text-balance">
             Reestruturação Natural do Ser:{" "}
             <span className="italic text-gold-soft">
               Mapeamento e Calibragem para pessoas com Alta Percepção.
             </span>
           </h1>
-          <p className="mt-10 max-w-xl text-sm leading-relaxed text-pearl/75 md:text-base">
+          <p className="mt-10 max-w-xl text-sm leading-relaxed text-pearl md:text-base">
             Não é terapia convencional. É engenharia de precisão para organizar o seu Canal Vital,
             eliminar a sobrecarga e retomar o comando da sua potência.
           </p>
@@ -365,9 +459,6 @@ function Identificacao() {
   return (
     <Section id="identificacao" className="bg-background">
       <div className="reveal max-w-3xl">
-        <p className="font-serif text-[clamp(1.6rem,3.4vw,2.4rem)] leading-none tracking-[0.14em] text-gold uppercase">
-          O Problema
-        </p>
         <h2 className="mt-8 font-serif text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.12] text-forest text-balance">
           Você vive em estado de alerta constante, sente que absorve o ruído do ambiente e está
           exausta de tentar se encaixar em estruturas que não foram feitas para você?
@@ -496,7 +587,6 @@ function Metodo() {
   return (
     <Section id="metodo" className="bg-background">
       <div className="reveal max-w-2xl">
-        <Eyebrow>O método</Eyebrow>
         <h2 className="mt-8 font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-forest">
           Reestruturação
           <br />
@@ -504,17 +594,34 @@ function Metodo() {
         </h2>
         <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
           Após anos de pesquisa, atendimentos e descobertas que impactaram a mim mesma e a centenas
-          de pessoas que já atendi, desenvolvi a Restruturação Natural do Ser, um processo voltado
+          de pessoas que já atendi, desenvolvi a Reestruturação Natural do Ser, um processo voltado
           especificamente para pessoas com altas percepções e com alta sensibilidade.
         </p>
         <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
           A Reestruturação Natural do Ser é um processo cíclico que se inicia com 10 sessões
           estruturadas, e foi desenhado para quem busca autonomia e não dependência.
         </p>
-        <p className="mt-10 border-l-2 border-gold bg-card px-6 py-6 font-serif text-[clamp(1.25rem,2.6vw,1.9rem)] leading-snug font-semibold text-forest">
-          <span className="text-gold">Pilares:</span> Limpeza do seu canal vital (desobstrução),
-          Calibração (instalação de filtros) e Consolidação (comando do seu sistema).
-        </p>
+      </div>
+
+      <div className="reveal mt-14 grid gap-8 border border-border bg-card p-8 sm:grid-cols-3 sm:gap-6 sm:p-10">
+        <PilarMini
+          icon={<LeafIcon className="h-9 w-9 text-gold" />}
+          n="Pilar 1"
+          t="Limpeza do Canal Vital"
+          d="Desobstrução do que não é seu, para a sua vitalidade voltar a pulsar."
+        />
+        <PilarMini
+          icon={<ApertureIcon className="h-9 w-9 text-gold" />}
+          n="Pilar 2"
+          t="Calibração"
+          d="Instalação de filtros para distinguir o que te nutre do que te drena."
+        />
+        <PilarMini
+          icon={<PalmIcon className="h-9 w-9 text-gold" />}
+          n="Pilar 3"
+          t="Consolidação"
+          d="Comando do seu sistema, com autonomia e presença."
+        />
       </div>
 
       <div className="mt-24 space-y-0">
@@ -548,7 +655,7 @@ function Jornada() {
       <div className="mx-auto w-full max-w-6xl">
       <div className="reveal max-w-2xl">
         <h2 className="font-serif text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.05] text-forest">
-          A jornada em
+          O caminho em
           <br />
           <span className="italic">três etapas.</span>
         </h2>
@@ -556,11 +663,15 @@ function Jornada() {
 
       <div className="mt-10 grid gap-10 md:mt-24 md:grid-cols-3 md:gap-10">
         {JORNADA.map((j, i) => (
-          <div key={j.t} className="reveal relative" style={{ transitionDelay: `${i * 140}ms` }}>
+          <div
+            key={j.t}
+            className="reveal relative flex items-start gap-5"
+            style={{ transitionDelay: `${i * 140}ms` }}
+          >
             <svg
               viewBox="0 0 64 64"
               aria-hidden
-              className="h-14 w-14 text-gold"
+              className="h-16 w-16 shrink-0 text-gold md:h-20 md:w-20"
               fill="none"
               stroke="currentColor"
               strokeWidth="0.8"
@@ -587,14 +698,16 @@ function Jornada() {
                 </>
               )}
             </svg>
-            <p className="mt-4 tracking-brand text-[0.55rem] text-gold md:mt-8">Etapa {i + 1}</p>
-            <h3 className="mt-3 font-serif text-2xl text-forest md:mt-4 md:text-3xl">{j.t}</h3>
-            <p className="mt-2 text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
-              {j.s}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:mt-6">{j.d}</p>
+            <div>
+              <p className="tracking-brand text-[0.55rem] text-gold">Etapa {i + 1}</p>
+              <h3 className="mt-3 font-serif text-2xl text-forest md:text-3xl">{j.t}</h3>
+              <p className="mt-2 text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+                {j.s}
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{j.d}</p>
+            </div>
             {i < JORNADA.length - 1 && (
-              <span className="absolute top-7 -right-5 hidden h-px w-10 bg-gold/30 md:block" />
+              <span className="absolute top-8 -right-5 hidden h-px w-10 bg-gold/30 md:block" />
             )}
           </div>
         ))}
@@ -698,6 +811,9 @@ function SobreLeandra() {
           <h3 className="mt-6 font-serif text-3xl text-forest md:text-4xl">
             Uma conversa, em breve
           </h3>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Entenda a Reestruturação Natural do Ser
+          </p>
         </div>
         <div className="reveal mt-12 flex aspect-[16/9] w-full items-center justify-center border border-border bg-card">
           <div className="text-center">
@@ -732,7 +848,7 @@ function ParaQuem() {
   return (
     <Section id="para-quem" className="bg-forest text-pearl">
       <div className="reveal max-w-3xl">
-        <Eyebrow>Para quem é</Eyebrow>
+        <Eyebrow colorClassName="text-gold-soft">Para quem é</Eyebrow>
         <p className="mt-10 font-serif text-[clamp(1.7rem,4vw,2.8rem)] leading-[1.2] text-pearl text-balance">
           Este processo é para pessoas de{" "}
           <span className="italic text-gold-soft">Alta Percepção</span> que buscam resultados
@@ -764,9 +880,6 @@ function Depoimentos() {
             className="max-h-[80vh] w-full bg-forest-deep object-contain"
           />
         </div>
-        <figcaption className="mt-5 text-xs tracking-[0.16em] text-muted-foreground uppercase">
-          Depoimento em vídeo
-        </figcaption>
       </figure>
 
       <div className="mt-24 grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
@@ -817,11 +930,16 @@ function Faq() {
           <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
             Minha trajetória não foi construída apenas no campo clínico, mas na observação contínua
             de como sistemas de alta percepção operam. Eu entendi que, para quem possui essa
-            sensibilidade, o acolhimento sem método é insuficiente. Foi a partir da minha própria
-            busca por estabilidade e da prática clínica que desenvolvi a Reestruturação Natural do
-            Ser. Não trabalho com suposições; trabalho com o mapeamento de falhas estruturais no
-            Canal Vital. Minha função aqui não é ser sua terapeuta eterna, mas a engenheira que vai
-            te entregar o manual de operação do seu próprio sistema.
+            sensibilidade, o acolhimento sem método é insuficiente.
+          </p>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+            Foi a partir da minha própria busca por estabilidade e da prática clínica que desenvolvi
+            a Reestruturação Natural do Ser. Não trabalho com suposições; trabalho com o mapeamento
+            de falhas estruturais no Canal Vital.
+          </p>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+            Minha função aqui não é ser sua terapeuta eterna, mas a engenheira que vai te entregar o
+            manual de operação do seu próprio sistema.
           </p>
         </div>
 
@@ -858,37 +976,6 @@ function Faq() {
             );
           })}
         </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ------------------------------------------------------------------ garantia */
-
-function Garantia() {
-  return (
-    <Section className="bg-background">
-      <div className="reveal mx-auto max-w-2xl text-center">
-        <svg
-          viewBox="0 0 64 64"
-          aria-hidden
-          className="mx-auto h-12 w-12 text-gold"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.8"
-        >
-          <path d="M32 8l20 8v16c0 12-8 20-20 24C20 52 12 44 12 32V16z" />
-          <path d="M24 32l6 6 12-13" />
-        </svg>
-        <h2 className="mt-10 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.08] text-forest">
-          Compromisso com a sua clareza
-        </h2>
-        <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
-          A Consulta Diagnóstico é o primeiro passo para o seu comando. Se, ao final do nosso
-          mapeamento, você não sentir que identificamos a raiz do seu descompasso e que o caminho
-          para a sua reestruturação está claro, eu devolvo integralmente o valor investido na
-          consulta. Você tem total segurança para entender como o seu sistema funciona, sem riscos.
-        </p>
       </div>
     </Section>
   );
