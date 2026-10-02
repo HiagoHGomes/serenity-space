@@ -196,11 +196,15 @@ function PilarMini({
 
 function Cta({ tone = "dark", className = "" }: { tone?: "dark" | "light"; className?: string }) {
   const base =
-    "group inline-flex items-center gap-3 border px-8 py-4 text-[0.7rem] tracking-brand transition-all duration-700";
+    "group inline-flex items-center gap-3 rounded-full border px-8 py-4 text-[0.7rem] tracking-brand transition-all duration-700";
   const styles =
     tone === "dark"
       ? "border-forest bg-forest text-pearl hover:border-gold hover:bg-gold hover:text-forest-deep"
       : "border-gold bg-gold text-forest-deep hover:border-pearl hover:bg-pearl hover:text-forest-deep";
+  const badgeStyles =
+    tone === "dark"
+      ? "bg-gold text-forest-deep group-hover:bg-forest group-hover:text-pearl"
+      : "bg-forest-deep text-gold-soft group-hover:bg-pearl group-hover:text-forest-deep";
   return (
     <a
       href={WHATSAPP_URL}
@@ -209,11 +213,41 @@ function Cta({ tone = "dark", className = "" }: { tone?: "dark" | "light"; class
       data-cta="consulta-diagnostico"
       className={`${base} ${styles} ${className}`}
     >
-      <WhatsAppIcon className="h-4 w-4 shrink-0" />
+      <span
+        className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-colors duration-700 ${badgeStyles}`}
+      >
+        <WhatsAppIcon className="h-3.5 w-3.5" />
+      </span>
       {CTA_LABEL}
       <span className="inline-block transition-transform duration-700 group-hover:translate-x-1">
         →
       </span>
+    </a>
+  );
+}
+
+function FloatingWhatsApp() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Agendar pelo WhatsApp"
+      data-cta="floating-whatsapp"
+      className={`animate-float-bounce fixed right-5 bottom-5 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-gold bg-forest-deep text-gold-soft shadow-lg shadow-forest-deep/30 transition-all duration-500 hover:bg-gold hover:text-forest-deep md:right-8 md:bottom-8 ${
+        show ? "opacity-100" : "pointer-events-none opacity-0"
+      }`}
+    >
+      <WhatsAppIcon className="h-6 w-6" />
     </a>
   );
 }
@@ -352,6 +386,7 @@ function Page() {
       <Faq />
       <CtaFinal />
       <Footer />
+      <FloatingWhatsApp />
     </main>
   );
 }
@@ -396,9 +431,11 @@ function Nav() {
           target="_blank"
           rel="noreferrer"
           data-cta="nav"
-          className="inline-flex shrink-0 items-center gap-2 border border-gold bg-gold px-5 py-3 text-[0.6rem] tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl"
+          className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-gold bg-gold px-5 py-3 text-[0.6rem] tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl"
         >
-          <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
+          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest-deep text-gold-soft transition-colors duration-700 group-hover:bg-gold group-hover:text-forest-deep">
+            <WhatsAppIcon className="h-3 w-3" />
+          </span>
           <span className="hidden sm:inline">Consulta Diagnóstica</span>
           <span className="sm:hidden">Agendar</span>
         </a>
@@ -599,7 +636,7 @@ function Metodo() {
         </p>
         <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
           A Reestruturação Natural do Ser é um processo cíclico que se inicia com 10 sessões
-          estruturadas, e foi desenhado para quem busca autonomia e não dependência.
+          estruturadas, e foi desenhado para quem busca autonomia emocional e relacional.
         </p>
       </div>
 
@@ -608,40 +645,20 @@ function Metodo() {
           icon={<LeafIcon className="h-9 w-9 text-gold" />}
           n="Pilar 1"
           t="Limpeza do Canal Vital"
-          d="Desobstrução do que não é seu, para a sua vitalidade voltar a pulsar."
+          d={PILARES[0].d}
         />
         <PilarMini
           icon={<ApertureIcon className="h-9 w-9 text-gold" />}
           n="Pilar 2"
           t="Calibração"
-          d="Instalação de filtros para distinguir o que te nutre do que te drena."
+          d={PILARES[1].d}
         />
         <PilarMini
           icon={<PalmIcon className="h-9 w-9 text-gold" />}
           n="Pilar 3"
           t="Consolidação"
-          d="Comando do seu sistema, com autonomia e presença."
+          d={PILARES[2].d}
         />
-      </div>
-
-      <div className="mt-24 space-y-0">
-        {PILARES.map((p, i) => (
-          <div key={p.n} className="reveal" style={{ transitionDelay: `${i * 120}ms` }}>
-            <div className="grid gap-8 border-t border-border py-14 md:grid-cols-[auto_1fr_1.2fr] md:gap-16">
-              <span className="font-serif text-4xl italic text-gold/60 md:text-5xl">{p.n}</span>
-              <h3 className="font-serif text-3xl leading-tight text-forest md:text-[2.4rem]">
-                {p.t}
-              </h3>
-              <p className="max-w-md text-sm leading-relaxed text-muted-foreground">{p.d}</p>
-            </div>
-            {i < PILARES.length - 1 && (
-              <div className="flex justify-center">
-                <span className="h-10 w-px bg-gold/30" />
-              </div>
-            )}
-          </div>
-        ))}
-        <div className="border-t border-border" />
       </div>
     </Section>
   );
@@ -943,7 +960,10 @@ function Faq() {
           </p>
         </div>
 
-        <div className="border-t border-border">
+        <div className="mt-20 border-t-2 border-gold/40 pt-10 lg:mt-0 lg:border-t lg:border-border lg:pt-0">
+          <p className="mb-8 tracking-brand text-[0.6rem] text-gold lg:hidden">
+            Perguntas frequentes
+          </p>
           {FAQ.map((f, i) => {
             const isOpen = open === i;
             return (
