@@ -928,7 +928,6 @@ function Faq() {
     <Section id="faq" className="bg-card">
       <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
         <div className="reveal">
-          <Eyebrow>Perguntas frequentes</Eyebrow>
           <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.05] text-forest">
             A precisão que o
             <br />
