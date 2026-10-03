@@ -196,28 +196,19 @@ function PilarMini({
 
 function Cta({ tone = "dark", className = "" }: { tone?: "dark" | "light"; className?: string }) {
   const base =
-    "group inline-flex items-center gap-3 rounded-full border px-8 py-4 text-[0.7rem] tracking-brand transition-all duration-700";
+    "group inline-flex items-center gap-3 rounded-full border px-8 py-4 text-[0.7rem] font-semibold tracking-brand transition-all duration-700";
   const styles =
     tone === "dark"
       ? "border-forest bg-forest text-pearl hover:border-gold hover:bg-gold hover:text-forest-deep"
       : "border-gold bg-gold text-forest-deep hover:border-pearl hover:bg-pearl hover:text-forest-deep";
-  const badgeStyles =
-    tone === "dark"
-      ? "bg-gold text-forest-deep group-hover:bg-forest group-hover:text-pearl"
-      : "bg-forest-deep text-gold-soft group-hover:bg-pearl group-hover:text-forest-deep";
   return (
     <a
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
       data-cta="consulta-diagnostico"
-      className={`${base} ${styles} ${className}`}
+      className={`${base} ${styles} animate-float-bounce ${className}`}
     >
-      <span
-        className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-colors duration-700 ${badgeStyles}`}
-      >
-        <WhatsAppIcon className="h-3.5 w-3.5" />
-      </span>
       {CTA_LABEL}
       <span className="inline-block transition-transform duration-700 group-hover:translate-x-1">
         →
@@ -431,11 +422,10 @@ function Nav() {
           target="_blank"
           rel="noreferrer"
           data-cta="nav"
-          className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-gold bg-gold px-5 py-3 text-[0.6rem] tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl"
+          className={`group inline-flex shrink-0 items-center gap-2 rounded-full border border-gold bg-gold px-5 py-3 text-[0.6rem] font-semibold tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl ${
+            solid ? "animate-float-bounce" : ""
+          }`}
         >
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest-deep text-gold-soft transition-colors duration-700 group-hover:bg-gold group-hover:text-forest-deep">
-            <WhatsAppIcon className="h-3 w-3" />
-          </span>
           <span className="hidden sm:inline">Consulta Diagnóstica</span>
           <span className="sm:hidden">Agendar</span>
         </a>
