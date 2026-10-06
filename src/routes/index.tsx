@@ -209,6 +209,7 @@ function Cta({ tone = "dark", className = "" }: { tone?: "dark" | "light"; class
       data-cta="consulta-diagnostico"
       className={`${base} ${styles} animate-float-bounce ${className}`}
     >
+      <WhatsAppIcon className="h-4 w-4 shrink-0" />
       {CTA_LABEL}
       <span className="inline-block transition-transform duration-700 group-hover:translate-x-1">
         →
@@ -234,11 +235,11 @@ function FloatingWhatsApp() {
       rel="noreferrer"
       aria-label="Agendar pelo WhatsApp"
       data-cta="floating-whatsapp"
-      className={`animate-float-bounce fixed right-5 bottom-5 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-gold bg-forest-deep text-gold-soft shadow-lg shadow-forest-deep/30 transition-all duration-500 hover:bg-gold hover:text-forest-deep md:right-8 md:bottom-8 ${
+      className={`animate-float-bounce fixed right-5 bottom-5 z-50 flex h-14 w-14 items-center justify-center text-gold transition-all duration-500 hover:text-gold-soft md:right-8 md:bottom-8 ${
         show ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
     >
-      <WhatsAppIcon className="h-6 w-6" />
+      <WhatsAppIcon className="h-9 w-9 drop-shadow-[0_2px_6px_rgba(11,49,32,0.55)]" />
     </a>
   );
 }
@@ -426,6 +427,7 @@ function Nav() {
             solid ? "animate-float-bounce" : ""
           }`}
         >
+          <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
           <span className="hidden sm:inline">Consulta Diagnóstica</span>
           <span className="sm:hidden">Agendar</span>
         </a>
