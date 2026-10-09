@@ -401,10 +401,10 @@ function Nav() {
           : "border-b border-transparent py-7"
       }`}
     >
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-6 px-6 md:px-12">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-6 sm:gap-6 md:px-12">
         <a href="#top" className="min-w-0">
           <span
-            className={`block truncate font-serif text-lg tracking-[0.18em] transition-colors duration-700 ${
+            className={`block truncate font-serif text-sm tracking-[0.08em] transition-colors duration-700 sm:text-lg sm:tracking-[0.18em] ${
               solid ? "text-forest" : "text-pearl"
             }`}
           >
