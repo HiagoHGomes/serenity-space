@@ -501,12 +501,9 @@ function Identificacao() {
         {SINTOMAS.map((s, i) => (
           <li
             key={s}
-            className="reveal group grid grid-cols-[auto_minmax(0,1fr)] items-start gap-6 border-b border-editorial bg-background px-1 py-8 transition-colors duration-700 hover:bg-card md:gap-10 md:px-6 md:py-10"
+            className="reveal group border-b border-editorial bg-background px-1 py-8 transition-colors duration-700 hover:bg-card md:px-6 md:py-10"
             style={{ transitionDelay: `${Math.min(i, 4) * 70}ms` }}
           >
-            <span className="shrink-0 pt-1 font-serif text-sm font-light italic text-gold/70 tabular-nums md:text-base">
-              {String(i + 1).padStart(2, "0")}
-            </span>
             <p className="min-w-0 font-serif text-lg leading-snug text-forest break-words md:text-[1.5rem]">
               {s}
             </p>
