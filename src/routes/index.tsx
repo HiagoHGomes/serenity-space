@@ -194,13 +194,21 @@ function PilarMini({
   );
 }
 
-function Cta({ tone = "dark", className = "" }: { tone?: "dark" | "light"; className?: string }) {
+function Cta({
+  tone = "dark",
+  className = "",
+}: {
+  tone?: "dark" | "light" | "white";
+  className?: string;
+}) {
   const base =
     "group inline-flex items-center gap-3 rounded-full border px-8 py-4 text-[0.7rem] font-semibold tracking-brand transition-all duration-700";
   const styles =
     tone === "dark"
       ? "border-forest bg-forest text-pearl hover:border-gold hover:bg-gold hover:text-forest-deep"
-      : "border-gold bg-gold text-forest-deep hover:border-pearl hover:bg-pearl hover:text-forest-deep";
+      : tone === "white"
+        ? "border-pearl bg-pearl text-forest-deep hover:border-gold hover:bg-gold hover:text-forest-deep"
+        : "border-gold bg-gold text-forest-deep hover:border-pearl hover:bg-pearl hover:text-forest-deep";
   return (
     <a
       href={WHATSAPP_URL}
@@ -423,8 +431,8 @@ function Nav() {
           target="_blank"
           rel="noreferrer"
           data-cta="nav"
-          className={`group inline-flex shrink-0 items-center gap-2 rounded-full border border-gold bg-gold px-5 py-3 text-[0.6rem] font-semibold tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl ${
-            solid ? "animate-float-bounce" : ""
+          className={`group inline-flex shrink-0 items-center gap-2 rounded-full border px-5 py-3 text-[0.6rem] font-semibold tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl ${
+            solid ? "border-gold bg-gold animate-float-bounce" : "border-pearl bg-pearl"
           }`}
         >
           <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
@@ -467,7 +475,7 @@ function Hero() {
             eliminar a sobrecarga e retomar o comando da sua potência.
           </p>
           <div className="mt-12">
-            <Cta tone="light" />
+            <Cta tone="white" />
           </div>
         </div>
       </div>
