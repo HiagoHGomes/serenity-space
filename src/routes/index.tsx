@@ -512,7 +512,7 @@ function Identificacao() {
             className="reveal group border-b border-editorial bg-background px-1 py-8 transition-colors duration-700 hover:bg-card md:px-6 md:py-10"
             style={{ transitionDelay: `${Math.min(i, 4) * 70}ms` }}
           >
-            <p className="min-w-0 font-serif text-lg leading-snug text-forest break-words md:text-[1.5rem]">
+            <p className="min-w-0 font-serif text-xl leading-snug font-medium text-forest-deep break-words md:text-[1.7rem]">
               {s}
             </p>
           </li>
