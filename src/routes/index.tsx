@@ -185,7 +185,7 @@ function PilarMini({
   d: string;
 }) {
   return (
-    <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+    <div className="flex flex-col items-start text-left">
       {icon}
       <p className="mt-5 tracking-brand text-[0.6rem] text-gold">{n}</p>
       <h4 className="mt-2 font-serif text-xl text-forest">{t}</h4>
