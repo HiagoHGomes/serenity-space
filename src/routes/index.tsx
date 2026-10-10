@@ -215,7 +215,7 @@ function Cta({
       target="_blank"
       rel="noreferrer"
       data-cta="consulta-diagnostico"
-      className={`${base} ${styles} animate-float-bounce ${className}`}
+      className={`${base} ${styles} ${className}`}
     >
       <WhatsAppIcon className="h-4 w-4 shrink-0" />
       {CTA_LABEL}
@@ -243,7 +243,7 @@ function FloatingWhatsApp() {
       rel="noreferrer"
       aria-label="Agendar pelo WhatsApp"
       data-cta="floating-whatsapp"
-      className={`animate-float-bounce fixed right-5 bottom-5 z-50 flex h-14 w-14 items-center justify-center text-gold transition-all duration-500 hover:text-gold-soft md:right-8 md:bottom-8 ${
+      className={`fixed right-5 bottom-5 z-50 flex h-14 w-14 items-center justify-center text-gold transition-all duration-500 hover:text-gold-soft md:right-8 md:bottom-8 ${
         show ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
     >
@@ -432,7 +432,7 @@ function Nav() {
           rel="noreferrer"
           data-cta="nav"
           className={`group inline-flex shrink-0 items-center gap-2 rounded-full border px-5 py-3 text-[0.6rem] font-semibold tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl ${
-            solid ? "border-gold bg-gold animate-float-bounce" : "border-pearl bg-pearl"
+            solid ? "border-gold bg-gold" : "border-pearl bg-pearl"
           }`}
         >
           <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />

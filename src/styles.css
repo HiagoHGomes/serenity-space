@@ -173,29 +173,6 @@
 @utility animate-scroll-hint {
   animation: scroll-hint 2.4s ease-in-out infinite;
 }
-@utility animate-float-bounce {
-  animation: float-bounce 6s ease-in-out infinite;
-}
-
-@keyframes float-bounce {
-  0%,
-  88%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  91% {
-    transform: translateY(-10px) scale(1.04);
-  }
-  94% {
-    transform: translateY(0) scale(1);
-  }
-  96% {
-    transform: translateY(-5px) scale(1.02);
-  }
-  98% {
-    transform: translateY(0) scale(1);
-  }
-}
 
 .reveal {
   opacity: 0;
