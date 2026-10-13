@@ -880,7 +880,7 @@ function Depoimentos() {
   return (
     <Section id="depoimentos" className="!pb-12 bg-background md:!pb-16">
       <div className="reveal max-w-2xl">
-        <Eyebrow>Depoimentos</Eyebrow>
+        <Eyebrow colorClassName="text-forest-deep">Depoimentos</Eyebrow>
       </div>
 
       <figure className="reveal mt-12">
