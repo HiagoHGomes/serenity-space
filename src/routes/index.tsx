@@ -621,7 +621,15 @@ function Metodo() {
   return (
     <Section id="metodo" className="!pt-12 bg-background md:!pt-16">
       <div className="reveal max-w-2xl">
-        <h2 className="mt-8 font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-forest">
+        <p className="font-serif text-xl leading-snug text-forest italic md:text-2xl">
+          Para interromper o ciclo do descompasso e recuperar a sua soberania, é preciso ir além do
+          alívio sintomático.
+          <br />
+          <br />
+          Foi a partir dessa necessidade que criei a{" "}
+          <span className="text-gold">Reestruturação Natural do Ser.</span>
+        </p>
+        <h2 className="mt-12 font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-forest">
           Reestruturação
           <br />
           <span className="italic">Natural do Ser</span>
