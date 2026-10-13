@@ -878,7 +878,7 @@ function ParaQuem() {
 
 function Depoimentos() {
   return (
-    <Section id="depoimentos" className="bg-background">
+    <Section id="depoimentos" className="!pb-12 bg-background md:!pb-16">
       <div className="reveal max-w-2xl">
         <Eyebrow>Depoimentos</Eyebrow>
       </div>
@@ -932,7 +932,7 @@ function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <Section id="faq" className="bg-card">
+    <Section id="faq" className="!pt-12 bg-card md:!pt-16">
       <div className="reveal mx-auto max-w-3xl">
         <Eyebrow>Perguntas frequentes</Eyebrow>
         <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.05] text-forest">
