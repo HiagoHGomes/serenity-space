@@ -553,7 +553,7 @@ function Descompasso() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Section id="descompasso" className="bg-forest text-pearl">
+    <Section id="descompasso" className="!pb-12 bg-forest text-pearl md:!pb-16">
       <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
         <div className="reveal">
           <Eyebrow> </Eyebrow>
@@ -619,7 +619,7 @@ function Descompasso() {
 
 function Metodo() {
   return (
-    <Section id="metodo" className="bg-background">
+    <Section id="metodo" className="!pt-12 bg-background md:!pt-16">
       <div className="reveal max-w-2xl">
         <h2 className="mt-8 font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-forest">
           Reestruturação
