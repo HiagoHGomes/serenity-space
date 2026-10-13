@@ -933,65 +933,47 @@ function Faq() {
 
   return (
     <Section id="faq" className="bg-card">
-      <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
-        <div className="reveal">
-          <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.05] text-forest">
-            A precisão que o
-            <br />
-            <span className="italic">seu sistema exige</span>
-          </h2>
-          <p className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Minha trajetória não foi construída apenas no campo clínico, mas na observação contínua
-            de como sistemas de alta percepção operam. Eu entendi que, para quem possui essa
-            sensibilidade, o acolhimento sem método é insuficiente.
-          </p>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Foi a partir da minha própria busca por estabilidade e da prática clínica que desenvolvi
-            a Reestruturação Natural do Ser. Não trabalho com suposições; trabalho com o mapeamento
-            de falhas estruturais no Canal Vital.
-          </p>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Minha função aqui não é ser sua terapeuta eterna, mas a engenheira que vai te entregar o
-            manual de operação do seu próprio sistema.
-          </p>
-        </div>
+      <div className="reveal mx-auto max-w-3xl">
+        <Eyebrow>Perguntas frequentes</Eyebrow>
+        <h2 className="mt-8 font-serif text-[clamp(2rem,5vw,3.4rem)] leading-[1.05] text-forest">
+          Tire suas
+          <br />
+          <span className="italic">dúvidas.</span>
+        </h2>
+      </div>
 
-        <div className="mt-20 border-t-2 border-gold/40 pt-10 lg:mt-0 lg:border-t lg:border-border lg:pt-0">
-          <p className="mb-8 tracking-brand text-[0.6rem] text-gold lg:hidden">
-            Perguntas frequentes
-          </p>
-          {FAQ.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={f.q} className="reveal border-b border-border">
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-start justify-between gap-8 py-8 text-left"
+      <div className="mx-auto mt-16 max-w-3xl border-t border-border">
+        {FAQ.map((f, i) => {
+          const isOpen = open === i;
+          return (
+            <div key={f.q} className="reveal border-b border-border">
+              <button
+                onClick={() => setOpen(isOpen ? null : i)}
+                aria-expanded={isOpen}
+                className="flex w-full items-start justify-between gap-8 py-8 text-left"
+              >
+                <span className="font-serif text-xl text-forest md:text-2xl">{f.q}</span>
+                <span
+                  className={`mt-1 shrink-0 text-gold transition-transform duration-700 ${
+                    isOpen ? "rotate-45" : ""
+                  }`}
                 >
-                  <span className="font-serif text-xl text-forest md:text-2xl">{f.q}</span>
-                  <span
-                    className={`mt-1 shrink-0 text-gold transition-transform duration-700 ${
-                      isOpen ? "rotate-45" : ""
-                    }`}
-                  >
-                    +
-                  </span>
-                </button>
-                <div
-                  className="grid transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
-                >
-                  <div className="overflow-hidden">
-                    <p className="max-w-xl pr-10 pb-9 text-sm leading-relaxed text-muted-foreground">
-                      {f.a}
-                    </p>
-                  </div>
+                  +
+                </span>
+              </button>
+              <div
+                className="grid transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
+              >
+                <div className="overflow-hidden">
+                  <p className="max-w-xl pr-10 pb-9 text-sm leading-relaxed text-muted-foreground">
+                    {f.a}
+                  </p>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </Section>
   );
