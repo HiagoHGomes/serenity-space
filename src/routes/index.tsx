@@ -533,7 +533,7 @@ function Impacto() {
     <section className="relative bg-pearl px-6 py-40 md:px-12 md:py-56">
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-4xl text-center">
-        <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance text-justify">
+        <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance">
           <span className="text-gold uppercase">Eu te afirmo:</span> o seu sistema não está quebrado ele apenas está funcionando{" "}
           <span className="italic text-gold">sem filtro.</span> <br /><br /><span className="text-gold">Absorvendo</span> o ruído externo e reagindo ao mundo sem o devido contorno. <br /><br /><span className="text-gold">O cansaço,</span> a ansiedade e a sobrecarga que você sente não são falhas da sua estrutura, são o resultado de uma potência que perdeu o próprio eixo e continua operando sem proteção.
         </p>
