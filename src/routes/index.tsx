@@ -262,7 +262,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={`relative px-6 py-28 md:px-12 md:py-40 ${className}`}>
+    <section id={id} className={`relative px-6 py-16 md:px-12 md:py-28 ${className}`}>
       <div className="mx-auto w-full max-w-6xl">{children}</div>
     </section>
   );
@@ -431,9 +431,7 @@ function Nav() {
           target="_blank"
           rel="noreferrer"
           data-cta="nav"
-          className={`group inline-flex shrink-0 items-center gap-2 rounded-full border px-5 py-3 text-[0.6rem] font-semibold tracking-brand text-forest-deep transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl ${
-            solid ? "border-gold bg-gold" : "border-pearl bg-pearl"
-          }`}
+          className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-gold/60 bg-pearl px-5 py-3 text-[0.6rem] font-semibold tracking-brand text-forest-deep shadow-sm transition-all duration-700 hover:border-forest hover:bg-forest hover:text-pearl"
         >
           <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
           <span className="hidden sm:inline">Consulta Diagnóstica</span>
@@ -448,7 +446,7 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="relative flex min-h-screen items-center overflow-hidden">
+    <section id="top" className="relative flex min-h-[88vh] items-center overflow-hidden md:min-h-screen">
       <div className="absolute inset-0">
         <div className="absolute inset-0">
           <img
@@ -530,14 +528,14 @@ function Identificacao() {
 
 function Impacto() {
   return (
-    <section className="relative bg-pearl px-6 py-40 md:px-12 md:py-56">
+    <section className="relative bg-pearl px-6 py-20 md:px-12 md:py-32">
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto max-w-4xl text-center">
+      <div className="relative mx-auto max-w-4xl text-left">
         <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance">
           <span className="text-gold uppercase">Eu te afirmo:</span> o seu sistema não está quebrado ele apenas está funcionando{" "}
-          <span className="italic text-gold">sem filtro.</span> <br /><br /><span className="text-gold">Absorvendo</span> o ruído externo e reagindo ao mundo sem o devido contorno. <br /><br /><span className="text-gold">O cansaço,</span> a ansiedade e a sobrecarga que você sente não são falhas da sua estrutura, são o resultado de uma potência que perdeu o próprio eixo e continua operando sem proteção.
+          <span className="italic text-gold">sem filtro.</span> <span className="text-gold">Absorvendo</span> o ruído externo e reagindo ao mundo sem o devido contorno. <br /><br /><span className="text-gold">O cansaço,</span> a ansiedade e a sobrecarga que você sente não são falhas da sua estrutura, são o resultado de uma potência que perdeu o próprio eixo e continua operando sem proteção.
         </p>
-        <span className="reveal mx-auto mt-16 block h-16 w-px bg-gold/40" />
+        <span className="reveal mt-16 block h-16 w-px bg-gold/40" />
         <p className="reveal mt-16 font-serif text-[clamp(1.8rem,4.6vw,3.2rem)] leading-[1.12] text-forest text-balance">
           O que você sente tem nome:{" "}
           <span className="italic text-gold">Descompasso Mediúnico</span>
@@ -553,7 +551,7 @@ function Descompasso() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Section id="descompasso" className="!pb-12 bg-forest text-pearl md:!pb-16">
+    <Section id="descompasso" className="!pt-12 !pb-12 bg-forest text-pearl md:!pt-16 md:!pb-16">
       <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
         <div className="reveal">
           <Eyebrow> </Eyebrow>
@@ -621,18 +619,13 @@ function Metodo() {
   return (
     <Section id="metodo" className="!pt-12 bg-background md:!pt-16">
       <div className="reveal max-w-2xl">
-        <p className="font-serif text-xl leading-snug text-forest italic md:text-2xl">
+        <p className="font-serif text-lg leading-snug font-semibold tracking-wide text-forest uppercase md:text-xl">
           Para interromper o ciclo do descompasso e recuperar a sua soberania, é preciso ir além do
           alívio sintomático.
-          <br />
-          <br />
-          Foi a partir dessa necessidade que criei a{" "}
-          <span className="text-gold">Reestruturação Natural do Ser.</span>
         </p>
-        <h2 className="mt-12 font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] text-forest">
-          Reestruturação
-          <br />
-          <span className="italic">Natural do Ser</span>
+        <h2 className="mt-8 font-serif text-[clamp(2rem,5.2vw,3.8rem)] leading-[1.08] text-forest">
+          Foi a partir dessa necessidade que criei a{" "}
+          <span className="italic text-gold">Reestruturação Natural do Ser.</span>
         </h2>
         <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
           Após anos de pesquisa, atendimentos e descobertas que impactaram a mim mesma e a centenas
@@ -827,7 +820,7 @@ function SobreLeandra() {
       </div>
 
       {/* placeholder vídeo institucional */}
-      <Section className="bg-background">
+      <Section className="!pb-12 bg-background md:!pb-16">
         <div className="reveal">
           <Eyebrow>Vídeo institucional</Eyebrow>
           <h3 className="mt-6 font-serif text-3xl text-forest md:text-4xl">
@@ -886,7 +879,7 @@ function ParaQuem() {
 
 function Depoimentos() {
   return (
-    <Section id="depoimentos" className="!pb-12 bg-background md:!pb-16">
+    <Section id="depoimentos" className="!pt-12 !pb-12 bg-background md:!pt-16 md:!pb-16">
       <div className="reveal max-w-2xl">
         <Eyebrow colorClassName="text-forest-deep">Depoimentos</Eyebrow>
       </div>
