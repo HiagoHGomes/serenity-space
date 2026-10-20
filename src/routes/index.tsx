@@ -532,10 +532,10 @@ function Impacto() {
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-4xl text-left">
         <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance">
-          <span className="text-gold uppercase">Eu te afirmo:</span> o seu sistema não está quebrado ele apenas está funcionando{" "}
+          <span className="text-gold uppercase">Eu te afirmo:</span> o{"\u00A0"}seu sistema não está quebrado ele apenas está funcionando{" "}
           <span className="italic text-gold">sem filtro.</span> <span className="text-gold">Absorvendo</span> o ruído externo e reagindo ao mundo sem o devido contorno. <br /><br /><span className="text-gold">O cansaço,</span> a ansiedade e a sobrecarga que você sente não são falhas da sua estrutura, são o resultado de uma potência que perdeu o próprio eixo e continua operando sem proteção.
         </p>
-        <span className="reveal mt-16 block h-16 w-px bg-gold/40" />
+        <span className="reveal mx-auto mt-16 block h-16 w-px bg-gold/40" />
         <p className="reveal mt-16 font-serif text-[clamp(1.8rem,4.6vw,3.2rem)] leading-[1.12] text-forest text-balance">
           O que você sente tem nome:{" "}
           <span className="italic text-gold">Descompasso Mediúnico</span>
@@ -752,7 +752,7 @@ function SobreLeandra() {
           />
           <div className="leaf-shadow absolute inset-0" />
         </div>
-        <div className="flex items-center px-6 py-24 md:px-16 lg:px-20">
+        <div className="flex items-center px-6 py-12 md:px-16 md:py-20 lg:px-20">
           <div className="reveal max-w-lg">
             <Eyebrow> </Eyebrow>
             <h2 className="mt-8 font-serif text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] text-forest">
@@ -785,7 +785,7 @@ function SobreLeandra() {
 
       {/* bloco editorial 2 — sorriso */}
       <div className="grid items-stretch lg:grid-cols-2">
-        <div className="order-2 flex items-center px-6 py-24 md:px-16 lg:order-1 lg:px-20">
+        <div className="order-2 flex items-center px-6 py-12 md:px-16 md:py-20 lg:order-1 lg:px-20">
           <div className="reveal max-w-lg space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
             <h2 className="mt-8 font-serif text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] text-forest">Quem é Leandra Estrelah?</h2>
             <p>
