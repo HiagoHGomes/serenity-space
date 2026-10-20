@@ -446,7 +446,7 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="relative flex min-h-[88vh] items-center overflow-hidden md:min-h-screen">
+    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0">
           <img
