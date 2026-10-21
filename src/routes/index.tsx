@@ -494,7 +494,7 @@ function Identificacao() {
   return (
     <Section id="identificacao" className="bg-background">
       <div className="reveal max-w-3xl">
-        <h2 className="mt-8 font-serif text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.12] text-forest text-balance">
+        <h2 className="-mt-10 font-serif text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.12] text-forest text-balance">
           Você vive em estado de alerta constante, sente que absorve o ruído do ambiente e está
           exausta de tentar se encaixar em estruturas que não foram feitas para você?
         </h2>
@@ -529,8 +529,8 @@ function Identificacao() {
 function Impacto() {
   return (
     <section className="relative bg-pearl px-6 py-20 md:px-12 md:py-32">
-      <div className="leaf-shadow pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto max-w-4xl text-left">
+      <div className="leaf-shadow pointer-events-none absolute inset-0"/>
+      <div className="relative mx-auto max-w-4xl text-left -mt-10">
         <p className="reveal font-serif text-[clamp(2rem,5.5vw,4rem)] leading-[1.1] text-forest text-balance">
           <span className="text-gold uppercase">Eu te afirmo:</span> <br/> o{"\u00A0"}seu sistema não está quebrado ele apenas está funcionando{" "}
           <span className="italic text-gold">sem filtro.</span> <span className="text-gold">Absorvendo</span> o ruído externo e reagindo ao mundo sem o devido contorno. <br /><br /><span className="text-gold">O cansaço,</span> a ansiedade e a sobrecarga que você sente não são falhas da sua estrutura, são o resultado de uma potência que perdeu o próprio eixo e continua operando sem proteção.
@@ -753,7 +753,7 @@ function SobreLeandra() {
           <div className="leaf-shadow absolute inset-0" />
         </div>
         <div className="flex items-center px-6 py-12 md:px-16 md:py-20 lg:px-20">
-          <div className="reveal max-w-lg">
+          <div className="reveal max-w-lg -mt-10">
             <Eyebrow> </Eyebrow>
             <h2 className="mt-8 font-serif text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] text-forest">
               Porque eu mapeio e
@@ -770,7 +770,7 @@ function SobreLeandra() {
               <p>
                 Foi a partir da minha própria busca por estabilidade e da prática clínica que
                 desenvolvi a Reestruturação Natural do Ser. Não trabalho com suposições ou
-                narrativas infinitas; trabalho com o mapeamento de falhas estruturais no seu Canal
+                narrativas infinitas; trabalho com o mapeamento de falhas estruturais no seu Canalhttp://localhost:8080/
                 Vital. A precisão que o seu diagnóstico exige vem da minha capacidade de isolar o
                 que é ruído ambiente do que é a sua potência real.
               </p>
@@ -786,7 +786,7 @@ function SobreLeandra() {
       {/* bloco editorial 2 — sorriso */}
       <div className="grid items-stretch lg:grid-cols-2">
         <div className="order-2 flex items-center px-6 py-12 md:px-16 md:py-20 lg:order-1 lg:px-20">
-          <div className="reveal max-w-lg space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
+          <div className="reveal max-w-lg space-y-6 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem] -mt-10">
             <h2 className="mt-8 font-serif text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.08] text-forest">Quem é Leandra Estrelah?</h2>
             <p>
               Sou terapeuta especializada na reestruturação de sistemas de alta percepção, e eu
@@ -986,7 +986,7 @@ function CtaFinal() {
   return (
     <section className="relative overflow-hidden bg-forest-deep px-6 py-40 text-pearl md:px-12 md:py-56">
       <div className="leaf-shadow pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto max-w-4xl text-center">
+      <div className="relative mx-auto max-w-4xl text-center -mt-15">
         <p className="reveal font-serif text-[clamp(1.8rem,5vw,3.6rem)] leading-[1.12] text-pearl text-balance">
           A sua sensibilidade não é um defeito de fabricação. É um sistema de alta precisão que, até
           hoje, operou sem filtro.
