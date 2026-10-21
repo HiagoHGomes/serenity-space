@@ -5,9 +5,9 @@ const olharAsset = { url: "/media/leandra-olhar.jpg" };
 const sorrisoAsset = { url: "/media/leandra-sorriso.jpg" };
 const depoimentoAsset = { url: "/media/depoimento.mp4" };
 
-/** WhatsApp oficial: +55 98 8830-0203 */
+/** WhatsApp oficial */
 const WHATSAPP_URL =
-  "https://wa.me/559888300203?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20Consulta%20Diagn%C3%B3stico.";
+  "https://wa.me/5598981780075?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20minha%20Consulta%20Diagn%C3%B3stico.";
 
 const INSTAGRAM_URL = "https://www.instagram.com/leandraestrelahterapeuta/";
 
